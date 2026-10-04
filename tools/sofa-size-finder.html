@@ -361,6 +361,13 @@ h2.q { color: var(--navy); font-size: 1.45rem; margin-top: 38px; }
 
 
 .container{max-width:1100px;margin:0 auto;padding:0 18px;}
+.cod-badge{display:inline-block;background:#1a9e4b;color:#fff;font-size:12px;font-weight:700;padding:4px 10px;border-radius:20px;}
+
+/* Mobile alignment fix (2026-10-05): pad sections lacking an inner .wrap; stop any horizontal overflow */
+html, body { overflow-x: clip; }
+main > section { padding-left: 20px; padding-right: 20px; }
+main > section > .wrap { padding-left: 0; padding-right: 0; }
+h1, h2, h3 { overflow-wrap: break-word; }
 </style>
   <script type="application/ld+json">
   {
@@ -589,18 +596,57 @@ h2.q { color: var(--navy); font-size: 1.45rem; margin-top: 38px; }
     return m.toFixed(2).replace(/0$/, "") + " m / " + (m / 0.3048).toFixed(1) + " ft";
   }
 
+  
+  var STORE_SOFAS = [
+    {name:"Elite Comfort 2-Seater Manual Recliner Sofa", width:150, price:380, url:"https://ukfurnitureonline.co.uk/product/elite-comfort-2seater-manual-recliner-sofa-premium"},
+    {name:"Olympia 2 Seater Sofa \u2014 Premium Grey Velvet", width:165, price:299, url:"https://ukfurnitureonline.co.uk/product/olympia-2-seater-sofa-premium-grey-velvet"},
+    {name:"Nicole Beige Plush Velvet 2 Seater Sofa", width:165, price:310, url:"https://ukfurnitureonline.co.uk/product/nicole-2-seater-sofa-premium-beige-plush"},
+    {name:"Dino 3-Seater Fabric Sofa with Scatter Back Cushions", width:200, price:330, url:"https://ukfurnitureonline.co.uk/product/dino-3seater-fabric-sofa-with-scatter-back-cushions"},
+    {name:"Dylan Blue Velvet 4 Seater Corner Sofa", width:212, price:340, url:"https://ukfurnitureonline.co.uk/product/dylan-blue-velvet-4-seater-right-arm-corner"},
+    {name:"Flamingo Sofa Bed with Storage", width:225, price:480, url:"https://ukfurnitureonline.co.uk/product/flamingo-sofa-bed-with-storage"}
+  ];
+  function matchingSofas(maxWcm) {
+    return STORE_SOFAS.filter(function(p){ return p.width <= maxWcm + 5; })
+      .sort(function(a,b){ return (maxWcm - a.width) - (maxWcm - b.width); })
+      .slice(0, 3);
+  }
+
   function drawRoom(lenM, widM, sofaW, sofaD) {
-    var maxPx = 280, pad = 8;
-    var scale = Math.min((maxPx - pad * 2) / lenM, (maxPx - pad * 2) / widM);
-    var rw = Math.max(lenM * scale, 30), rh = Math.max(widM * scale, 30);
-    var sw = Math.min(sofaW * scale, rw - 4), sd = Math.min(sofaD * scale, rh - 4);
-    var sx = (rw - sw) / 2, sy = 4;
-    return '<svg viewBox="0 0 ' + rw + ' ' + rh + '" style="width:100%;max-width:300px;height:auto;display:block;margin:12px auto;" role="img" aria-label="Room layout diagram">' +
-      '<rect x="0" y="0" width="' + rw + '" height="' + rh + '" rx="6" fill="#f1f5f4" stroke="#0E7C7B" stroke-width="2"/>' +
-      '<rect x="' + sx + '" y="' + sy + '" width="' + sw + '" height="' + sd + '" rx="4" fill="#0E7C7B" opacity="0.85"/>' +
-      '<text x="' + (rw / 2) + '" y="' + (rh - 6) + '" text-anchor="middle" font-size="10" fill="#334155">' + fmtShort(lenM) + ' \u00d7 ' + fmtShort(widM) + '</text>' +
-      '<text x="' + (sx + sw / 2) + '" y="' + (sy + sd / 2 + 4) + '" text-anchor="middle" font-size="10" fill="#fff">sofa</text>' +
-      '</svg>';
+    var W = 320, H = 260, padL = 34, padT = 26, padR = 10, padB = 10;
+    var iw = W - padL - padR, ih = H - padT - padB;
+    var scale = Math.min(iw / lenM, ih / widM);
+    var rw = lenM * scale, rh = widM * scale;
+    var ox = padL + (iw - rw) / 2, oy = padT + (ih - rh) / 2;
+    var sw = Math.min(sofaW * scale, rw - 6), sd = Math.min(sofaD * scale, rh * 0.55);
+    var sx = ox + (rw - sw) / 2, sy = oy + 6;
+    var armW = Math.max(sw * 0.12, 8);
+    var sofaCm = Math.round(sofaW * 100);
+    var s = "";
+    s += '<svg viewBox="0 0 ' + W + ' ' + H + '" style="width:100%;max-width:340px;height:auto;display:block;margin:14px auto;" role="img" aria-label="Room layout with recommended sofa size">';
+    // room
+    s += '<rect x="' + ox + '" y="' + oy + '" width="' + rw + '" height="' + rh + '" rx="6" fill="#f4faf9" stroke="#0E7C7B" stroke-width="2.5"/>';
+    // wall labels
+    s += '<text x="' + (ox + rw/2) + '" y="' + (oy - 8) + '" text-anchor="middle" font-size="12" font-weight="700" fill="#0E7C7B">' + lenM.toFixed(1) + ' m</text>';
+    s += '<text x="' + (ox - 8) + '" y="' + (oy + rh/2) + '" text-anchor="end" font-size="12" font-weight="700" fill="#0E7C7B" transform="rotate(-90 ' + (ox-8) + ' ' + (oy+rh/2) + ')">' + widM.toFixed(1) + ' m</text>';
+    // walkway dashed line
+    var wy = sy + sd + 14;
+    if (wy < oy + rh - 8) {
+      s += '<line x1="' + sx + '" y1="' + wy + '" x2="' + (sx+sw) + '" y2="' + wy + '" stroke="#FF6B35" stroke-width="1.5" stroke-dasharray="5,4"/>';
+      s += '<text x="' + (sx+sw/2) + '" y="' + (wy+13) + '" text-anchor="middle" font-size="10" fill="#D94F1E">walkway 75cm+</text>';
+    }
+    // sofa: backrest
+    s += '<rect x="' + sx + '" y="' + sy + '" width="' + sw + '" height="' + sd + '" rx="7" fill="#0E7C7B"/>';
+    s += '<rect x="' + (sx+3) + '" y="' + (sy+3) + '" width="' + (sw-6) + '" height="' + Math.max(sd*0.28, 10) + '" rx="4" fill="#095C5B"/>';
+    // armrests
+    s += '<rect x="' + (sx+3) + '" y="' + (sy+3) + '" width="' + armW + '" height="' + (sd-6) + '" rx="4" fill="#095C5B" opacity="0.85"/>';
+    s += '<rect x="' + (sx+sw-3-armW) + '" y="' + (sy+3) + '" width="' + armW + '" height="' + (sd-6) + '" rx="4" fill="#095C5B" opacity="0.85"/>';
+    // cushion divider
+    s += '<line x1="' + (sx+sw/2) + '" y1="' + (sy+sd*0.32) + '" x2="' + (sx+sw/2) + '" y2="' + (sy+sd-4) + '" stroke="#095C5B" stroke-width="2" opacity="0.7"/>';
+    // size label ON the sofa
+    s += '<text x="' + (sx+sw/2) + '" y="' + (sy+sd*0.72) + '" text-anchor="middle" font-size="13" font-weight="800" fill="#ffffff">' + sofaCm + ' cm</text>';
+    s += '<text x="' + (sx+sw/2) + '" y="' + (sy+sd*0.72+14) + '" text-anchor="middle" font-size="10" fill="#e6f4f3">recommended width</text>';
+    s += '</svg>';
+    return s;
   }
 
   document.getElementById("calcBtn").addEventListener("click", function () {
@@ -675,10 +721,21 @@ h2.q { color: var(--navy); font-size: 1.45rem; margin-top: 38px; }
       "<p>" + why + "</p>" +
       "<p>Based on a " + fmtM(lenM) + " \u00d7 " + fmtM(widM) + " room, aim for a sofa no wider than <strong>" + fmtM(maxSofa) + "</strong>.</p>" +
       warn +
+      var matches = matchingSofas(Math.round(maxSofa * 100));
+      var matchHtml = "";
+      if (matches.length) {
+        matchHtml = '<div style="margin-top:20px"><h4 style="margin:0 0 10px;color:var(--navy)">Sofas that fit your room \u2014 real picks with Cash on Delivery:</h4>';
+        matches.forEach(function(p, i) {
+          matchHtml += '<div style="background:#fff;border:1px solid var(--line);border-radius:12px;padding:14px 16px;margin-bottom:10px">' +
+            '<div style="font-weight:800;color:var(--navy)">' + (i+1) + '. ' + p.name + '</div>' +
+            '<div style="font-size:14px;color:var(--muted);margin:4px 0">' + p.width + ' cm wide \u00b7 \u00a3' + p.price + ' \u00b7 <span class="cod-badge">FREE Delivery + COD</span></div>' +
+            '<a class="btn btn-primary" style="padding:9px 18px;font-size:14px" href="' + p.url + '">View this sofa \u2192</a></div>';
+        });
+        matchHtml += "</div>";
+      }
       '<div class="cta-row">' +
-      '<a class="btn btn-primary" href="https://ukfurnitureonline.co.uk/sofas">Shop ' + size + ' sofas</a>' +
-      '<a class="btn btn-outline" href="https://ukfurnitureonline.co.uk">Browse sofas at UK Furniture Online</a>' +
-      "</div>" +
+      '<a class="btn btn-outline" href="../guides/best-sofas-uk.html">See all 7 best sofas</a>' +
+      "</div>" + matchHtml +
       '<p style="font-size:14px;margin-top:14px">Next: compare real models in our <a href="#" onclick="showPage(\'sofas\');return false">7 best sofas in the UK (2026)</a>.</p>';
 
     result.classList.add("show");

@@ -361,6 +361,12 @@ h2.q { color: var(--navy); font-size: 1.45rem; margin-top: 38px; }
 
 
 .container{max-width:1100px;margin:0 auto;padding:0 18px;}
+
+/* Mobile alignment fix (2026-10-05): pad sections lacking an inner .wrap; stop any horizontal overflow */
+html, body { overflow-x: clip; }
+main > section { padding-left: 20px; padding-right: 20px; }
+main > section > .wrap { padding-left: 0; padding-right: 0; }
+h1, h2, h3 { overflow-wrap: break-word; }
 </style>
   
   
