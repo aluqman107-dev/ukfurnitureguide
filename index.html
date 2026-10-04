@@ -1,0 +1,615 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>UK Furniture Guide — Honest UK Furniture Buying Guides (2026)</title>
+  <meta name="description" content="UK Furniture Guide: independent, honest buying guides for sofas, beds, dining sets and mattresses in the UK. Real prices in £, practical advice, and a free sofa size finder tool.">
+  <meta property="og:title" content="UK Furniture Guide — Honest UK Furniture Buying Guides">
+  <meta property="og:description" content="Independent UK furniture buying guides: sofas, beds, dining sets, mattresses. Real £ prices, honest pros and cons.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="/images/og-banner.jpg">
+  <style>
+/* UK Furniture Guide — hand-written stylesheet, no frameworks.
+   Palette: deep teal (#0E7C7B) + vibrant coral (#FF6B35) on warm off-white.
+   Mobile-first, responsive. Brand name appears only in HTML. */
+
+:root {
+  --teal: #0E7C7B;
+  --teal-dark: #095C5B;
+  --teal-ink: #073f3e;
+  --coral: #FF6B35;
+  --coral-dark: #D94F1E;
+  --gold: #E8A33D;
+  --navy: #1F2A44;
+  --navy-dark: #141C30;
+  --bg: #FDFBF7;
+  --card: #FFFFFF;
+  --ink: #2B2F36;
+  --muted: #5F6570;
+  --line: #E9E2D4;
+  --radius: 14px;
+  --max: 1080px;
+  --shadow: 0 3px 14px rgba(14, 124, 123, 0.10);
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  font-family: "Segoe UI", system-ui, -apple-system, Roboto, "Helvetica Neue", Arial, sans-serif;
+  color: var(--ink);
+  background: var(--bg);
+  line-height: 1.65;
+  font-size: 17px;
+}
+img { max-width: 100%; }
+a { color: var(--teal); }
+a:hover { color: var(--teal-dark); }
+
+/* ---------- layout ---------- */
+.wrap { max-width: var(--max); margin: 0 auto; padding: 0 20px; }
+section { padding: 52px 0; }
+section.tight { padding: 30px 0; }
+
+/* ---------- header / nav ---------- */
+.site-header {
+  background: var(--navy);
+  color: #fff;
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  box-shadow: 0 2px 10px rgba(0,0,0,.22);
+  border-bottom: 3px solid var(--coral);
+}
+.header-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 20px;
+  max-width: var(--max);
+  margin: 0 auto;
+}
+.brand { display: flex; align-items: center; gap: 10px; text-decoration: none; color: #fff; }
+.brand-mark {
+  width: 40px; height: 40px; border-radius: 12px;
+  background: linear-gradient(135deg, var(--coral), var(--coral-dark));
+  display: flex; align-items: center; justify-content: center;
+  font-weight: 800; font-size: 22px; color: #fff;
+  box-shadow: 0 2px 8px rgba(255,107,53,.45);
+}
+.brand-name { font-size: 20px; font-weight: 800; letter-spacing: .2px; }
+.brand-name small { display: block; font-size: 11px; font-weight: 400; color: #FFD9C4; letter-spacing: .8px; }
+.nav-toggle {
+  display: none;
+  background: none; border: 2px solid var(--coral); color: #fff;
+  border-radius: 8px; font-size: 20px; padding: 4px 12px; cursor: pointer;
+}
+.main-nav ul { display: flex; gap: 4px; list-style: none; margin: 0; padding: 0; }
+.main-nav a {
+  color: #EDEFF5; text-decoration: none; font-size: 15px; font-weight: 600;
+  padding: 8px 12px; border-radius: 8px;
+}
+.main-nav a:hover, .main-nav a.active { background: rgba(255,107,53,.18); color: #fff; }
+.main-nav a.active { box-shadow: inset 0 -3px 0 var(--coral); border-radius: 8px 8px 0 0; }
+
+/* ---------- hero ---------- */
+.hero {
+  background:
+    radial-gradient(1100px 340px at 85% -10%, rgba(255,107,53,.28), transparent 60%),
+    linear-gradient(120deg, var(--navy) 0%, #274b5e 55%, var(--teal-dark) 115%);
+  color: #fff;
+  padding: 78px 0 68px;
+}
+.hero h1 { font-size: 2.5rem; margin: 0 0 12px; line-height: 1.18; }
+.hero h1 .pop { color: var(--coral); }
+.hero p.lead { font-size: 1.15rem; color: #E4EAF3; max-width: 660px; }
+.hero-cta { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 26px; }
+
+/* ---------- buttons ---------- */
+.btn {
+  display: inline-block;
+  padding: 13px 24px;
+  border-radius: 12px;
+  font-weight: 800;
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  transition: transform .08s ease, background .15s ease, box-shadow .15s ease;
+}
+.btn:active { transform: scale(.97); }
+.btn-primary {
+  background: linear-gradient(135deg, var(--coral), var(--coral-dark));
+  color: #fff;
+  box-shadow: 0 4px 14px rgba(255,107,53,.35);
+}
+.btn-primary:hover { background: var(--coral-dark); color: #fff; box-shadow: 0 6px 18px rgba(255,107,53,.5); }
+.btn-secondary { background: var(--teal); color: #fff; box-shadow: 0 4px 14px rgba(14,124,123,.3); }
+.btn-secondary:hover { background: var(--teal-dark); color: #fff; }
+.btn-ghost { background: transparent; color: #fff; border: 2px solid #fff; }
+.btn-ghost:hover { border-color: var(--coral); color: var(--coral); }
+.btn-outline { background: #fff; color: var(--teal-dark); border: 2px solid var(--teal); }
+.btn-outline:hover { background: var(--teal); border-color: var(--teal); color: #fff; }
+
+/* ---------- cards / grids ---------- */
+.grid { display: grid; gap: 22px; }
+.grid-3 { grid-template-columns: repeat(3, 1fr); }
+.grid-2 { grid-template-columns: repeat(2, 1fr); }
+.card {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 26px;
+  display: flex;
+  flex-direction: column;
+  transition: transform .12s ease, box-shadow .12s ease;
+}
+.card:hover { transform: translateY(-3px); box-shadow: 0 8px 22px rgba(14,124,123,.14); }
+.card h3 { margin: 0 0 8px; font-size: 1.2rem; }
+.card h3 a { color: var(--navy); text-decoration: none; }
+.card h3 a:hover { color: var(--coral-dark); }
+.card p { color: var(--muted); font-size: 15px; flex: 1; }
+.card .card-link { font-weight: 700; margin-top: 10px; color: var(--coral-dark); }
+
+/* product card (listicles) */
+.product-card {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-top: 4px solid var(--teal);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 28px;
+  margin-bottom: 30px;
+  position: relative;
+}
+.product-card .rank {
+  position: absolute; top: -15px; left: 24px;
+  background: var(--teal); color: #fff;
+  font-weight: 800; font-size: 14px;
+  padding: 5px 16px; border-radius: 20px;
+  box-shadow: 0 3px 8px rgba(14,124,123,.35);
+}
+.product-card .rank.top {
+  background: linear-gradient(135deg, var(--coral), var(--coral-dark));
+  color: #fff;
+  box-shadow: 0 3px 10px rgba(255,107,53,.45);
+}
+.product-card h2 { margin: 8px 0 4px; font-size: 1.45rem; color: var(--navy); }
+.stars { color: var(--gold); font-size: 19px; letter-spacing: 2px; text-shadow: 0 1px 0 rgba(0,0,0,.06); }
+.price { font-size: 1.35rem; font-weight: 800; color: var(--teal-dark); margin: 8px 0; }
+.specs { width: 100%; border-collapse: collapse; margin: 12px 0; font-size: 15px; }
+.specs th, .specs td { text-align: left; padding: 7px 10px; border-bottom: 1px solid var(--line); }
+.specs th { width: 38%; color: var(--muted); font-weight: 600; }
+.pros-cons { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 14px 0; }
+.pros-cons h4 { margin: 0 0 6px; font-size: 15px; }
+.pros ul, .cons ul { margin: 0; padding-left: 20px; font-size: 15px; }
+.pros h4 { color: var(--teal-dark); }
+.cons h4 { color: #B23A3A; }
+.cta-row { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 16px; }
+
+/* image placeholder block */
+.img-placeholder {
+  background: linear-gradient(135deg, #E7F3F1, #FDEBDD);
+  border: 2px dashed #9CC5C2;
+  border-radius: var(--radius);
+  min-height: 190px;
+  display: flex; align-items: center; justify-content: center;
+  color: #5E7B79; font-weight: 700; text-align: center;
+  padding: 20px; margin-bottom: 16px; font-size: 15px;
+}
+
+/* quotable fact block (AEO/GEO) */
+.fact-box {
+  background: linear-gradient(135deg, #E6F5F3, #FFF3E8);
+  border: 1px solid var(--line);
+  border-left: 6px solid var(--coral);
+  border-radius: 0 var(--radius) var(--radius) 0;
+  padding: 20px 24px;
+  margin: 26px 0;
+}
+.fact-box h3, .fact-box h4 { margin: 0 0 8px; color: var(--navy); }
+.fact-box p, .fact-box li { margin: 6px 0; }
+.fact-box ul { margin: 8px 0; padding-left: 20px; }
+.in-short {
+  background: #fff;
+  border: 2px solid var(--teal);
+  border-radius: var(--radius);
+  padding: 20px 24px;
+  margin: 22px 0 28px;
+  box-shadow: var(--shadow);
+}
+.in-short strong { color: var(--teal-dark); }
+
+/* ---------- tool ---------- */
+.tool-box {
+  background: var(--card); border: 1px solid var(--line);
+  border-top: 4px solid var(--coral);
+  border-radius: var(--radius); box-shadow: var(--shadow);
+  padding: 32px; max-width: 720px; margin: 0 auto;
+}
+.tool-box label { display: block; font-weight: 700; margin: 16px 0 6px; color: var(--navy); }
+.tool-box input[type="number"], .tool-box select {
+  width: 100%; padding: 12px; font-size: 16px;
+  border: 2px solid var(--line); border-radius: 10px; background: #fff;
+}
+.tool-box input:focus, .tool-box select:focus { border-color: var(--teal); outline: none; box-shadow: 0 0 0 3px rgba(14,124,123,.15); }
+.unit-toggle { display: flex; gap: 8px; margin-top: 6px; }
+.unit-toggle button {
+  flex: 1; padding: 10px; border: 2px solid var(--line); background: #fff;
+  border-radius: 10px; font-weight: 700; cursor: pointer; font-size: 15px; color: var(--muted);
+}
+.unit-toggle button.active { border-color: var(--teal); background: #E2F3F1; color: var(--teal-dark); }
+.tool-result {
+  display: none; margin-top: 24px; padding: 26px;
+  background: linear-gradient(135deg, #E6F5F3, #FFF6EC);
+  border: 2px solid var(--teal); border-radius: var(--radius);
+}
+.tool-result.show { display: block; }
+.tool-result h3 { margin-top: 0; color: var(--teal-dark); }
+
+/* ---------- faq ---------- */
+.faq details {
+  background: var(--card); border: 1px solid var(--line);
+  border-radius: 12px; margin-bottom: 12px; padding: 4px 20px;
+}
+.faq details[open] { border-color: var(--teal); }
+.faq summary { cursor: pointer; font-weight: 700; padding: 14px 0; color: var(--navy); font-size: 17px; }
+.faq summary::-webkit-details-marker { color: var(--coral); }
+.faq summary::marker { color: var(--coral); }
+.faq p { margin-top: 0; color: var(--muted); }
+
+/* ---------- trust / misc ---------- */
+.trust-band { background: linear-gradient(135deg, var(--navy) 0%, #274b5e 70%, var(--teal-dark) 130%); color: #E9EDF5; }
+.trust-band h2 { color: #fff; }
+.check-list { list-style: none; padding: 0; }
+.check-list li { padding: 8px 0 8px 36px; position: relative; }
+.check-list li::before {
+  content: "✓"; position: absolute; left: 0; top: 6px;
+  background: var(--coral); color: #fff; font-weight: 800; font-size: 15px;
+  width: 24px; height: 24px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+}
+.notice {
+  background: #FFF6E9; border-left: 6px solid var(--coral);
+  padding: 16px 20px; border-radius: 0 12px 12px 0; margin: 24px 0; font-size: 15px;
+}
+table.compare { width: 100%; border-collapse: collapse; background: #fff; font-size: 15px; margin: 18px 0; box-shadow: var(--shadow); border-radius: 8px; overflow: hidden; }
+table.compare th, table.compare td { border: 1px solid var(--line); padding: 10px 12px; text-align: left; }
+table.compare th { background: var(--teal); color: #fff; }
+table.compare tr:nth-child(even) td { background: #F7FBFA; }
+.breadcrumb { font-size: 14px; color: var(--muted); margin: 18px 0 0; }
+.breadcrumb a { color: var(--teal); text-decoration: none; }
+h2.section-title { color: var(--navy); font-size: 1.7rem; margin-bottom: 6px; }
+h2.section-title::after {
+  content: ""; display: block; width: 58px; height: 4px;
+  background: linear-gradient(90deg, var(--coral), var(--gold));
+  border-radius: 3px; margin-top: 10px;
+}
+.trust-band h2.section-title::after { background: linear-gradient(90deg, var(--coral), var(--gold)); }
+p.section-sub { color: var(--muted); margin-top: 0; }
+h2.q { color: var(--navy); font-size: 1.45rem; margin-top: 38px; }
+
+/* newsletter */
+.newsletter {
+  background: #fff; border: 1px solid var(--line); border-top: 4px solid var(--coral);
+  border-radius: var(--radius); padding: 34px; text-align: center; box-shadow: var(--shadow);
+}
+.newsletter form { display: flex; gap: 10px; max-width: 480px; margin: 18px auto 0; }
+.newsletter input[type="email"] { flex: 1; padding: 12px; font-size: 16px; border: 2px solid var(--line); border-radius: 10px; }
+.newsletter input[type="email"]:focus { border-color: var(--teal); outline: none; }
+
+/* forms */
+.form-row { margin-bottom: 16px; }
+.form-row label { display: block; font-weight: 700; margin-bottom: 6px; color: var(--navy); }
+.form-row input, .form-row textarea, .form-row select {
+  width: 100%; padding: 12px; font-size: 16px; border: 2px solid var(--line); border-radius: 10px; font-family: inherit; background: #fff;
+}
+.form-row input:focus, .form-row textarea:focus { border-color: var(--teal); outline: none; }
+.form-row textarea { min-height: 140px; resize: vertical; }
+
+/* ---------- footer ---------- */
+.site-footer { background: var(--navy-dark); color: #B9C2D6; padding: 52px 0 24px; margin-top: 44px; border-top: 4px solid var(--coral); }
+.footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 28px; }
+.site-footer h4 { color: #fff; margin-top: 0; font-size: 16px; }
+.site-footer a { color: #B9C2D6; text-decoration: none; font-size: 15px; }
+.site-footer a:hover { color: var(--coral); }
+.site-footer ul { list-style: none; padding: 0; margin: 0; }
+.site-footer li { margin-bottom: 8px; }
+.footer-bottom { border-top: 1px solid #2C3A58; margin-top: 32px; padding-top: 20px; font-size: 13px; text-align: center; }
+.disclosure-strip { background: #FFF3E8; color: #7A5A3A; font-size: 13.5px; padding: 13px 0; text-align: center; border-top: 1px solid #F0DCC2; }
+.disclosure-strip a { color: var(--coral-dark); font-weight: 700; }
+
+/* ---------- responsive ---------- */
+@media (max-width: 860px) {
+  .grid-3 { grid-template-columns: 1fr; }
+  .grid-2 { grid-template-columns: 1fr; }
+  .footer-grid { grid-template-columns: 1fr 1fr; }
+  .hero h1 { font-size: 1.95rem; }
+  .pros-cons { grid-template-columns: 1fr; }
+}
+@media (max-width: 640px) {
+  .nav-toggle { display: block; }
+  .main-nav { display: none; width: 100%; }
+  .main-nav.open { display: block; }
+  .main-nav ul { flex-direction: column; padding: 10px 0 16px; }
+  .header-inner { flex-wrap: wrap; }
+  .newsletter form { flex-direction: column; }
+  .footer-grid { grid-template-columns: 1fr; }
+  section { padding: 36px 0; }
+}
+
+
+.product-img{width:100%;height:200px;object-fit:cover;border-radius:12px;display:block;margin-bottom:12px;}
+
+/* Sticky visible category nav (no hamburger) */
+.site-header{position:fixed !important;top:0;left:0;right:0;z-index:200;box-shadow:0 2px 12px rgba(0,0,0,.12);}
+.nav-toggle{display:none !important;}
+.main-nav{display:block !important;width:100%;}
+.main-nav ul{display:flex !important;flex-direction:row !important;overflow-x:auto;white-space:nowrap;
+  padding:6px 0 10px;margin:0;gap:2px;scrollbar-width:none;-webkit-overflow-scrolling:touch;}
+.main-nav ul::-webkit-scrollbar{display:none;}
+.main-nav li{flex:0 0 auto;}
+.main-nav a{white-space:nowrap;font-size:14px;padding:8px 12px;}
+.header-inner{flex-wrap:wrap;}
+
+
+/* Bulletproof sticky header + smooth category slider */
+.site-header{position:fixed !important;top:0;left:0;right:0;z-index:200;box-shadow:0 2px 12px rgba(0,0,0,.12);}
+.main-nav ul{touch-action:pan-x;scroll-snap-type:x proximity;}
+.main-nav li{scroll-snap-align:start;}
+.main-nav a{font-size:13px;padding:8px 10px;}
+
+
+.container{max-width:1100px;margin:0 auto;padding:0 18px;}
+</style>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "UK Furniture Guide",
+    "url": "https://ukfurnitureguide.co.uk/",
+    "slogan": "Honest UK furniture buying guides",
+    "email": "info@ukfurnitureonline.co.uk"
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "UK Furniture Guide",
+    "url": "https://ukfurnitureguide.co.uk/",
+    "description": "Honest UK furniture buying guides: sofas, beds, dining sets and mattresses, with real £ prices."
+  }
+  </script>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="header-inner">
+    <a class="brand" href="index.html" aria-label="UK Furniture Guide home">
+      <span class="brand-mark">UK</span>
+      <span class="brand-name">UK Furniture Guide<small>HONEST UK FURNITURE BUYING GUIDES</small></span>
+    </a>
+    <button class="nav-toggle" aria-expanded="false" aria-label="Toggle navigation">☰</button>
+    <nav class="main-nav" aria-label="Main navigation">
+      <ul>
+        <li><a href="index.html" class="active">Home</a></li>
+        <li><a href="guides/best-sofas-uk.html">Sofas</a></li>
+        <li><a href="guides/best-beds-uk.html">Beds</a></li>
+        <li><a href="guides/best-dining-sets-uk.html">Dining Sets</a></li>
+        <li><a href="guides/best-mattresses-uk.html">Mattresses</a></li>
+        <li><a href="tools/sofa-size-finder.html">Sofa Size Finder</a></li><li><a href="tools/bed-size-finder.html">Bed Size Finder</a></li><li><a href="tools/dining-size-finder.html">Dining Size Finder</a></li>
+        <li><a href="about.html">About</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <div class="hero">
+    <div class="wrap">
+      <h1>Honest furniture buying guides for UK homes</h1>
+      <p class="lead">From the team behind UK Furniture Online — our store's picks come first and are clearly labelled, plus other UK retailers to compare. We research the sofas, beds, dining sets and mattresses sold in Britain and tell you what's actually worth your money — with real prices in pounds.</p>
+      <div class="hero-cta">
+        <a class="btn btn-primary" href="tools/sofa-size-finder.html">Try the free Sofa Size Finder</a>
+        <a class="btn btn-ghost" href="guides/best-sofas-uk.html">See the 2026 sofa picks</a>
+      </div>
+    </div>
+  </div>
+
+  <section>
+    <div class="wrap">
+      <h2 class="section-title">Start with our most-used tool</h2>
+      <p class="section-sub">Answer three quick questions about your room and get a sofa size recommendation that actually fits.</p>
+      <div class="tool-box">
+        <h3 style="margin-top:0">Sofa Size Finder — quick preview</h3>
+        <p style="color:var(--muted)">Enter your room dimensions and we'll recommend the right sofa size and layout, with space left for doors, radiators and real life.</p>
+        <a class="btn btn-secondary" href="tools/sofa-size-finder.html">Open the full tool →</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="tight">
+    <div class="wrap">
+      <h2 class="section-title">Our 2026 buying guides</h2>
+      <p class="section-sub">Researched for the UK market — UK sizes, UK delivery realities, prices in £.</p>
+      <div class="grid grid-3">
+        <div class="card">
+          <img src="images/real/rsofa-2.jpg" alt="Best sofas UK 2026 guide" class="product-img" loading="eager" width="800" height="805" decoding="async">
+          <!-- replace with product image -->
+          <h3><a href="guides/best-sofas-uk.html">7 Best Sofas in the UK (2026)</a></h3>
+          <p>From budget-friendly 3-seaters to velvet statement pieces and practical sofa beds — honest pros and cons for each.</p>
+          <a class="card-link" href="guides/best-sofas-uk.html">Read the guide →</a>
+        </div>
+        <div class="card">
+          <img src="images/real/rbed-3.jpg" alt="Best beds UK 2026 guide" class="product-img" loading="lazy" width="512" height="512" decoding="async">
+          <!-- replace with product image -->
+          <h3><a href="guides/best-beds-uk.html">7 Best Beds in the UK (2026)</a></h3>
+          <p>Divan, ottoman storage, sleigh, TV beds and more — matched to UK mattress sizes and bedroom realities.</p>
+          <a class="card-link" href="guides/best-beds-uk.html">Read the guide →</a>
+        </div>
+        <div class="card">
+          <img src="images/real/rdining-1.jpg" alt="Best dining sets UK 2026 guide" class="product-img" loading="lazy" width="800" height="794" decoding="async">
+          <!-- replace with product image -->
+          <h3><a href="guides/best-dining-sets-uk.html">6 Best Dining Sets in the UK (2026)</a></h3>
+          <p>Four-seaters for flats, extending tables for hosts, marble-effect for style — measured for British dining rooms.</p>
+          <a class="card-link" href="guides/best-dining-sets-uk.html">Read the guide →</a>
+        </div>
+        <div class="card">
+          <img src="images/real/rmattress-1.jpg" alt="Best mattresses UK 2026 guide" class="product-img" loading="lazy" width="800" height="800" decoding="async">
+          <!-- replace with product image -->
+          <h3><a href="guides/best-mattresses-uk.html">6 Best Mattresses in the UK (2026)</a></h3>
+          <p>Memory foam, pocket sprung, hybrid and orthopaedic — what actually helps you sleep, minus the marketing fluff.</p>
+          <a class="card-link" href="guides/best-mattresses-uk.html">Read the guide →</a>
+        </div>
+        <div class="card">
+          <img src="images/real/rsofa-1.jpg" alt="How to choose a sofa UK buying guide" class="product-img" loading="lazy" width="800" height="797" decoding="async">
+          <!-- replace with product image -->
+          <h3><a href="guides/sofa-buying-guide.html">How to Choose a Sofa: UK Buying Guide</a></h3>
+          <p>Measuring, fabrics, frames and delivery tips — everything to check before you spend a penny.</p>
+          <a class="card-link" href="guides/sofa-buying-guide.html">Read the guide →</a>
+        </div>
+        <div class="card">
+          <img src="images/real/rbed-1.jpg" alt="How to choose a bed UK buying guide" class="product-img" loading="lazy" width="800" height="800" decoding="async">
+          <!-- replace with product image -->
+          <h3><a href="guides/bed-buying-guide.html">How to Choose a Bed: UK Buying Guide</a></h3>
+          <p>UK bed sizes in centimetres, storage options and mattress pairing — the full walkthrough.</p>
+          <a class="card-link" href="guides/bed-buying-guide.html">Read the guide →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="trust-band">
+    <div class="wrap">
+      <section class="tight">
+  <h2 class="section-title">Our free services</h2>
+  <p class="section-sub">Real help from real furniture people — no charge.</p>
+  <div class="grid grid-2">
+    <div class="card">
+      <h3>Free furniture advice on WhatsApp</h3>
+      <p>Not sure what size will fit through your door, or which bed suits a box room? Message us a photo of your room and we'll advise — free, no obligation.</p>
+      <a class="btn btn-primary" href="https://wa.me/447551137162?text=Hi!%20I%20need%20furniture%20advice%20for%20my%20room.">Chat on WhatsApp</a>
+    </div>
+    <div class="card">
+      <h3>Ready-to-buy furniture, delivered free</h3>
+      <p>Our own UK store stocks sofas, beds and dining sets with free UK-wide delivery and cash on delivery available.</p>
+      <a class="btn btn-outline" href="https://ukfurnitureonline.co.uk">Shop UK Furniture Online</a>
+    </div>
+  </div>
+</section>
+      <h2 class="section-title" style="color:#fff">Why trust UK Furniture Guide?</h2>
+      <ul class="check-list">
+        <li><strong>Independent picks.</strong> Nobody pays for a place in our rankings. If a product is here, it's because the value stacks up.</li>
+        <li><strong>UK-specific.</strong> UK bed sizes, UK delivery norms, prices in pounds — not recycled American advice.</li>
+        <li><strong>Honest about money.</strong> We may earn a commission if you buy through our links, at no extra cost to you. <a href="affiliate-disclosure.html" style="color:var(--amber)">Read our affiliate disclosure</a>.</li>
+        <li><strong>Practical tools.</strong> Our sofa size finder and measuring guides solve the problems people actually have.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <h2 class="section-title">Latest articles</h2>
+      <p class="section-sub">Fresh for 2026.</p>
+      <div class="grid grid-2">
+        <div class="card">
+          <h3><a href="guides/sofa-buying-guide.html">Fabric vs Leather Sofas: An Honest UK Comparison</a></h3>
+          <p>Kids, pets, radiators and the British weather — which upholstery actually survives real life? Inside our sofa buying guide.</p>
+          <a class="card-link" href="guides/sofa-buying-guide.html">Read →</a>
+        </div>
+        <div class="card">
+          <h3><a href="guides/bed-buying-guide.html">UK Bed Sizes Explained (with cm Measurements)</a></h3>
+          <p>Single, double, king, super king — and why your "double" duvet never quite fits. Inside our bed buying guide.</p>
+          <a class="card-link" href="guides/bed-buying-guide.html">Read →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="tight">
+    <div class="wrap">
+      <div class="newsletter">
+        <h2 class="section-title">Get the 2026 furniture deals roundup</h2>
+        <p class="section-sub">One email a month: price drops, new guides, no spam. Unsubscribe anytime.</p>
+        <!-- TODO: connect to your email provider (e.g. Brevo/Mailchimp) before launch -->
+        <form action="#" method="post" onsubmit="return false;">
+          <input type="email" name="email" placeholder="you@example.co.uk" aria-label="Email address" required>
+          <button class="btn btn-primary" type="submit">Sign me up</button>
+        </form>
+      </div>
+    </div>
+  </section>
+</main>
+
+<div class="disclosure-strip">
+  <div class="wrap">UK Furniture Guide may earn a commission on purchases made through links on this site — <a href="affiliate-disclosure.html">learn more</a>.</div>
+</div>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div>
+        <h4>UK Furniture Guide</h4>
+        <p style="font-size:14px">Honest UK furniture buying guides. Independent research, real £ prices, practical tools.</p>
+      </div>
+      <div>
+        <h4>Guides</h4>
+        <ul>
+          <li><a href="guides/best-sofas-uk.html">Best Sofas 2026</a></li>
+          <li><a href="guides/best-beds-uk.html">Best Beds 2026</a></li>
+          <li><a href="guides/best-dining-sets-uk.html">Best Dining Sets 2026</a></li>
+          <li><a href="guides/best-mattresses-uk.html">Best Mattresses 2026</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Learn</h4>
+        <ul>
+          <li><a href="guides/sofa-buying-guide.html">Sofa Buying Guide</a></li>
+          <li><a href="guides/bed-buying-guide.html">Bed Buying Guide</a></li>
+          <li><a href="tools/sofa-size-finder.html">Sofa Size Finder</a></li><li><a href="tools/bed-size-finder.html">Bed Size Finder</a></li><li><a href="tools/dining-size-finder.html">Dining Size Finder</a></li>
+          <li><a href="about.html">About Us</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Legal</h4>
+        <ul>
+          <li><a href="affiliate-disclosure.html">Affiliate Disclosure</a></li>
+          <li><a href="privacy-policy.html">Privacy Policy</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">© <span data-year>2026</span> UK Furniture Guide. All rights reserved.</div>
+  </div>
+</footer>
+
+<script>
+/* UK Furniture Guide — shared behaviour: mobile nav toggle. */
+(function () {
+  document.addEventListener("DOMContentLoaded", function () {
+    var toggle = document.querySelector(".nav-toggle");
+    var nav = document.querySelector(".main-nav");
+    if (toggle && nav) {
+      toggle.addEventListener("click", function () {
+        var open = nav.classList.toggle("open");
+        toggle.setAttribute("aria-expanded", open ? "true" : "false");
+      });
+    }
+
+    // Footer year
+    var yearEls = document.querySelectorAll("[data-year]");
+    yearEls.forEach(function (el) { el.textContent = new Date().getFullYear(); });
+  });
+})();
+
+</script>
+<script>
+(function(){function pad(){var h=document.querySelector('.site-header');if(h){document.body.style.paddingTop=h.offsetHeight+'px';}}
+document.addEventListener('DOMContentLoaded',pad);window.addEventListener('load',pad);window.addEventListener('resize',pad);})();
+</script>
+
+</body>
+</html>

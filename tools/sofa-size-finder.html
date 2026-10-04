@@ -1,0 +1,687 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Free Sofa Size Finder Tool (UK) — What Size Sofa Fits My Room? | UK Furniture Guide</title>
+  <meta name="description" content="Free UK sofa size finder: enter your room dimensions and get an instant sofa size recommendation — 2-seater, 3-seater or corner sofa — with space for walkways.">
+  <meta property="og:title" content="Sofa Size Finder — Free UK Tool | UK Furniture Guide">
+  <meta property="og:description" content="Enter your room size, get the right sofa size instantly. Free tool, no signup.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="/images/og-banner.jpg">
+  <style>
+/* UK Furniture Guide — hand-written stylesheet, no frameworks.
+   Palette: deep teal (#0E7C7B) + vibrant coral (#FF6B35) on warm off-white.
+   Mobile-first, responsive. Brand name appears only in HTML. */
+
+:root {
+  --teal: #0E7C7B;
+  --teal-dark: #095C5B;
+  --teal-ink: #073f3e;
+  --coral: #FF6B35;
+  --coral-dark: #D94F1E;
+  --gold: #E8A33D;
+  --navy: #1F2A44;
+  --navy-dark: #141C30;
+  --bg: #FDFBF7;
+  --card: #FFFFFF;
+  --ink: #2B2F36;
+  --muted: #5F6570;
+  --line: #E9E2D4;
+  --radius: 14px;
+  --max: 1080px;
+  --shadow: 0 3px 14px rgba(14, 124, 123, 0.10);
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  font-family: "Segoe UI", system-ui, -apple-system, Roboto, "Helvetica Neue", Arial, sans-serif;
+  color: var(--ink);
+  background: var(--bg);
+  line-height: 1.65;
+  font-size: 17px;
+}
+img { max-width: 100%; }
+a { color: var(--teal); }
+a:hover { color: var(--teal-dark); }
+
+/* ---------- layout ---------- */
+.wrap { max-width: var(--max); margin: 0 auto; padding: 0 20px; }
+section { padding: 52px 0; }
+section.tight { padding: 30px 0; }
+
+/* ---------- header / nav ---------- */
+.site-header {
+  background: var(--navy);
+  color: #fff;
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  box-shadow: 0 2px 10px rgba(0,0,0,.22);
+  border-bottom: 3px solid var(--coral);
+}
+.header-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 20px;
+  max-width: var(--max);
+  margin: 0 auto;
+}
+.brand { display: flex; align-items: center; gap: 10px; text-decoration: none; color: #fff; }
+.brand-mark {
+  width: 40px; height: 40px; border-radius: 12px;
+  background: linear-gradient(135deg, var(--coral), var(--coral-dark));
+  display: flex; align-items: center; justify-content: center;
+  font-weight: 800; font-size: 22px; color: #fff;
+  box-shadow: 0 2px 8px rgba(255,107,53,.45);
+}
+.brand-name { font-size: 20px; font-weight: 800; letter-spacing: .2px; }
+.brand-name small { display: block; font-size: 11px; font-weight: 400; color: #FFD9C4; letter-spacing: .8px; }
+.nav-toggle {
+  display: none;
+  background: none; border: 2px solid var(--coral); color: #fff;
+  border-radius: 8px; font-size: 20px; padding: 4px 12px; cursor: pointer;
+}
+.main-nav ul { display: flex; gap: 4px; list-style: none; margin: 0; padding: 0; }
+.main-nav a {
+  color: #EDEFF5; text-decoration: none; font-size: 15px; font-weight: 600;
+  padding: 8px 12px; border-radius: 8px;
+}
+.main-nav a:hover, .main-nav a.active { background: rgba(255,107,53,.18); color: #fff; }
+.main-nav a.active { box-shadow: inset 0 -3px 0 var(--coral); border-radius: 8px 8px 0 0; }
+
+/* ---------- hero ---------- */
+.hero {
+  background:
+    radial-gradient(1100px 340px at 85% -10%, rgba(255,107,53,.28), transparent 60%),
+    linear-gradient(120deg, var(--navy) 0%, #274b5e 55%, var(--teal-dark) 115%);
+  color: #fff;
+  padding: 78px 0 68px;
+}
+.hero h1 { font-size: 2.5rem; margin: 0 0 12px; line-height: 1.18; }
+.hero h1 .pop { color: var(--coral); }
+.hero p.lead { font-size: 1.15rem; color: #E4EAF3; max-width: 660px; }
+.hero-cta { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 26px; }
+
+/* ---------- buttons ---------- */
+.btn {
+  display: inline-block;
+  padding: 13px 24px;
+  border-radius: 12px;
+  font-weight: 800;
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  transition: transform .08s ease, background .15s ease, box-shadow .15s ease;
+}
+.btn:active { transform: scale(.97); }
+.btn-primary {
+  background: linear-gradient(135deg, var(--coral), var(--coral-dark));
+  color: #fff;
+  box-shadow: 0 4px 14px rgba(255,107,53,.35);
+}
+.btn-primary:hover { background: var(--coral-dark); color: #fff; box-shadow: 0 6px 18px rgba(255,107,53,.5); }
+.btn-secondary { background: var(--teal); color: #fff; box-shadow: 0 4px 14px rgba(14,124,123,.3); }
+.btn-secondary:hover { background: var(--teal-dark); color: #fff; }
+.btn-ghost { background: transparent; color: #fff; border: 2px solid #fff; }
+.btn-ghost:hover { border-color: var(--coral); color: var(--coral); }
+.btn-outline { background: #fff; color: var(--teal-dark); border: 2px solid var(--teal); }
+.btn-outline:hover { background: var(--teal); border-color: var(--teal); color: #fff; }
+
+/* ---------- cards / grids ---------- */
+.grid { display: grid; gap: 22px; }
+.grid-3 { grid-template-columns: repeat(3, 1fr); }
+.grid-2 { grid-template-columns: repeat(2, 1fr); }
+.card {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 26px;
+  display: flex;
+  flex-direction: column;
+  transition: transform .12s ease, box-shadow .12s ease;
+}
+.card:hover { transform: translateY(-3px); box-shadow: 0 8px 22px rgba(14,124,123,.14); }
+.card h3 { margin: 0 0 8px; font-size: 1.2rem; }
+.card h3 a { color: var(--navy); text-decoration: none; }
+.card h3 a:hover { color: var(--coral-dark); }
+.card p { color: var(--muted); font-size: 15px; flex: 1; }
+.card .card-link { font-weight: 700; margin-top: 10px; color: var(--coral-dark); }
+
+/* product card (listicles) */
+.product-card {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-top: 4px solid var(--teal);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 28px;
+  margin-bottom: 30px;
+  position: relative;
+}
+.product-card .rank {
+  position: absolute; top: -15px; left: 24px;
+  background: var(--teal); color: #fff;
+  font-weight: 800; font-size: 14px;
+  padding: 5px 16px; border-radius: 20px;
+  box-shadow: 0 3px 8px rgba(14,124,123,.35);
+}
+.product-card .rank.top {
+  background: linear-gradient(135deg, var(--coral), var(--coral-dark));
+  color: #fff;
+  box-shadow: 0 3px 10px rgba(255,107,53,.45);
+}
+.product-card h2 { margin: 8px 0 4px; font-size: 1.45rem; color: var(--navy); }
+.stars { color: var(--gold); font-size: 19px; letter-spacing: 2px; text-shadow: 0 1px 0 rgba(0,0,0,.06); }
+.price { font-size: 1.35rem; font-weight: 800; color: var(--teal-dark); margin: 8px 0; }
+.specs { width: 100%; border-collapse: collapse; margin: 12px 0; font-size: 15px; }
+.specs th, .specs td { text-align: left; padding: 7px 10px; border-bottom: 1px solid var(--line); }
+.specs th { width: 38%; color: var(--muted); font-weight: 600; }
+.pros-cons { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 14px 0; }
+.pros-cons h4 { margin: 0 0 6px; font-size: 15px; }
+.pros ul, .cons ul { margin: 0; padding-left: 20px; font-size: 15px; }
+.pros h4 { color: var(--teal-dark); }
+.cons h4 { color: #B23A3A; }
+.cta-row { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 16px; }
+
+/* image placeholder block */
+.img-placeholder {
+  background: linear-gradient(135deg, #E7F3F1, #FDEBDD);
+  border: 2px dashed #9CC5C2;
+  border-radius: var(--radius);
+  min-height: 190px;
+  display: flex; align-items: center; justify-content: center;
+  color: #5E7B79; font-weight: 700; text-align: center;
+  padding: 20px; margin-bottom: 16px; font-size: 15px;
+}
+
+/* quotable fact block (AEO/GEO) */
+.fact-box {
+  background: linear-gradient(135deg, #E6F5F3, #FFF3E8);
+  border: 1px solid var(--line);
+  border-left: 6px solid var(--coral);
+  border-radius: 0 var(--radius) var(--radius) 0;
+  padding: 20px 24px;
+  margin: 26px 0;
+}
+.fact-box h3, .fact-box h4 { margin: 0 0 8px; color: var(--navy); }
+.fact-box p, .fact-box li { margin: 6px 0; }
+.fact-box ul { margin: 8px 0; padding-left: 20px; }
+.in-short {
+  background: #fff;
+  border: 2px solid var(--teal);
+  border-radius: var(--radius);
+  padding: 20px 24px;
+  margin: 22px 0 28px;
+  box-shadow: var(--shadow);
+}
+.in-short strong { color: var(--teal-dark); }
+
+/* ---------- tool ---------- */
+.tool-box {
+  background: var(--card); border: 1px solid var(--line);
+  border-top: 4px solid var(--coral);
+  border-radius: var(--radius); box-shadow: var(--shadow);
+  padding: 32px; max-width: 720px; margin: 0 auto;
+}
+.tool-box label { display: block; font-weight: 700; margin: 16px 0 6px; color: var(--navy); }
+.tool-box input[type="number"], .tool-box select {
+  width: 100%; padding: 12px; font-size: 16px;
+  border: 2px solid var(--line); border-radius: 10px; background: #fff;
+}
+.tool-box input:focus, .tool-box select:focus { border-color: var(--teal); outline: none; box-shadow: 0 0 0 3px rgba(14,124,123,.15); }
+.unit-toggle { display: flex; gap: 8px; margin-top: 6px; }
+.unit-toggle button {
+  flex: 1; padding: 10px; border: 2px solid var(--line); background: #fff;
+  border-radius: 10px; font-weight: 700; cursor: pointer; font-size: 15px; color: var(--muted);
+}
+.unit-toggle button.active { border-color: var(--teal); background: #E2F3F1; color: var(--teal-dark); }
+.tool-result {
+  display: none; margin-top: 24px; padding: 26px;
+  background: linear-gradient(135deg, #E6F5F3, #FFF6EC);
+  border: 2px solid var(--teal); border-radius: var(--radius);
+}
+.tool-result.show { display: block; }
+.tool-result h3 { margin-top: 0; color: var(--teal-dark); }
+
+/* ---------- faq ---------- */
+.faq details {
+  background: var(--card); border: 1px solid var(--line);
+  border-radius: 12px; margin-bottom: 12px; padding: 4px 20px;
+}
+.faq details[open] { border-color: var(--teal); }
+.faq summary { cursor: pointer; font-weight: 700; padding: 14px 0; color: var(--navy); font-size: 17px; }
+.faq summary::-webkit-details-marker { color: var(--coral); }
+.faq summary::marker { color: var(--coral); }
+.faq p { margin-top: 0; color: var(--muted); }
+
+/* ---------- trust / misc ---------- */
+.trust-band { background: linear-gradient(135deg, var(--navy) 0%, #274b5e 70%, var(--teal-dark) 130%); color: #E9EDF5; }
+.trust-band h2 { color: #fff; }
+.check-list { list-style: none; padding: 0; }
+.check-list li { padding: 8px 0 8px 36px; position: relative; }
+.check-list li::before {
+  content: "✓"; position: absolute; left: 0; top: 6px;
+  background: var(--coral); color: #fff; font-weight: 800; font-size: 15px;
+  width: 24px; height: 24px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+}
+.notice {
+  background: #FFF6E9; border-left: 6px solid var(--coral);
+  padding: 16px 20px; border-radius: 0 12px 12px 0; margin: 24px 0; font-size: 15px;
+}
+table.compare { width: 100%; border-collapse: collapse; background: #fff; font-size: 15px; margin: 18px 0; box-shadow: var(--shadow); border-radius: 8px; overflow: hidden; }
+table.compare th, table.compare td { border: 1px solid var(--line); padding: 10px 12px; text-align: left; }
+table.compare th { background: var(--teal); color: #fff; }
+table.compare tr:nth-child(even) td { background: #F7FBFA; }
+.breadcrumb { font-size: 14px; color: var(--muted); margin: 18px 0 0; }
+.breadcrumb a { color: var(--teal); text-decoration: none; }
+h2.section-title { color: var(--navy); font-size: 1.7rem; margin-bottom: 6px; }
+h2.section-title::after {
+  content: ""; display: block; width: 58px; height: 4px;
+  background: linear-gradient(90deg, var(--coral), var(--gold));
+  border-radius: 3px; margin-top: 10px;
+}
+.trust-band h2.section-title::after { background: linear-gradient(90deg, var(--coral), var(--gold)); }
+p.section-sub { color: var(--muted); margin-top: 0; }
+h2.q { color: var(--navy); font-size: 1.45rem; margin-top: 38px; }
+
+/* newsletter */
+.newsletter {
+  background: #fff; border: 1px solid var(--line); border-top: 4px solid var(--coral);
+  border-radius: var(--radius); padding: 34px; text-align: center; box-shadow: var(--shadow);
+}
+.newsletter form { display: flex; gap: 10px; max-width: 480px; margin: 18px auto 0; }
+.newsletter input[type="email"] { flex: 1; padding: 12px; font-size: 16px; border: 2px solid var(--line); border-radius: 10px; }
+.newsletter input[type="email"]:focus { border-color: var(--teal); outline: none; }
+
+/* forms */
+.form-row { margin-bottom: 16px; }
+.form-row label { display: block; font-weight: 700; margin-bottom: 6px; color: var(--navy); }
+.form-row input, .form-row textarea, .form-row select {
+  width: 100%; padding: 12px; font-size: 16px; border: 2px solid var(--line); border-radius: 10px; font-family: inherit; background: #fff;
+}
+.form-row input:focus, .form-row textarea:focus { border-color: var(--teal); outline: none; }
+.form-row textarea { min-height: 140px; resize: vertical; }
+
+/* ---------- footer ---------- */
+.site-footer { background: var(--navy-dark); color: #B9C2D6; padding: 52px 0 24px; margin-top: 44px; border-top: 4px solid var(--coral); }
+.footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 28px; }
+.site-footer h4 { color: #fff; margin-top: 0; font-size: 16px; }
+.site-footer a { color: #B9C2D6; text-decoration: none; font-size: 15px; }
+.site-footer a:hover { color: var(--coral); }
+.site-footer ul { list-style: none; padding: 0; margin: 0; }
+.site-footer li { margin-bottom: 8px; }
+.footer-bottom { border-top: 1px solid #2C3A58; margin-top: 32px; padding-top: 20px; font-size: 13px; text-align: center; }
+.disclosure-strip { background: #FFF3E8; color: #7A5A3A; font-size: 13.5px; padding: 13px 0; text-align: center; border-top: 1px solid #F0DCC2; }
+.disclosure-strip a { color: var(--coral-dark); font-weight: 700; }
+
+/* ---------- responsive ---------- */
+@media (max-width: 860px) {
+  .grid-3 { grid-template-columns: 1fr; }
+  .grid-2 { grid-template-columns: 1fr; }
+  .footer-grid { grid-template-columns: 1fr 1fr; }
+  .hero h1 { font-size: 1.95rem; }
+  .pros-cons { grid-template-columns: 1fr; }
+}
+@media (max-width: 640px) {
+  .nav-toggle { display: block; }
+  .main-nav { display: none; width: 100%; }
+  .main-nav.open { display: block; }
+  .main-nav ul { flex-direction: column; padding: 10px 0 16px; }
+  .header-inner { flex-wrap: wrap; }
+  .newsletter form { flex-direction: column; }
+  .footer-grid { grid-template-columns: 1fr; }
+  section { padding: 36px 0; }
+}
+
+
+/* Sticky visible category nav (no hamburger) */
+.site-header{position:fixed !important;top:0;left:0;right:0;z-index:200;box-shadow:0 2px 12px rgba(0,0,0,.12);}
+.nav-toggle{display:none !important;}
+.main-nav{display:block !important;width:100%;}
+.main-nav ul{display:flex !important;flex-direction:row !important;overflow-x:auto;white-space:nowrap;
+  padding:6px 0 10px;margin:0;gap:2px;scrollbar-width:none;-webkit-overflow-scrolling:touch;}
+.main-nav ul::-webkit-scrollbar{display:none;}
+.main-nav li{flex:0 0 auto;}
+.main-nav a{white-space:nowrap;font-size:14px;padding:8px 12px;}
+.header-inner{flex-wrap:wrap;}
+
+
+/* Bulletproof sticky header + smooth category slider */
+.site-header{position:fixed !important;top:0;left:0;right:0;z-index:200;box-shadow:0 2px 12px rgba(0,0,0,.12);}
+.main-nav ul{touch-action:pan-x;scroll-snap-type:x proximity;}
+.main-nav li{scroll-snap-align:start;}
+.main-nav a{font-size:13px;padding:8px 10px;}
+
+
+.container{max-width:1100px;margin:0 auto;padding:0 18px;}
+</style>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "UK Furniture Guide",
+    "url": "https://ukfurnitureguide.co.uk/",
+    "slogan": "Honest UK furniture buying guides",
+    "email": "info@ukfurnitureonline.co.uk"
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "UK Furniture Guide",
+    "url": "https://ukfurnitureguide.co.uk/",
+    "description": "Honest UK furniture buying guides: sofas, beds, dining sets and mattresses, with real £ prices."
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://ukfurnitureguide.co.uk/index.html"},
+      {"@type": "ListItem", "position": 2, "name": "Sofa Size Finder", "item": "https://ukfurnitureguide.co.uk/tools/sofa-size-finder.html"}
+    ]
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {"@type": "Question", "name": "How much space should I leave around a sofa?", "acceptedAnswer": {"@type": "Answer", "text": "Leave at least 75 cm of clear walkway around the sofa (90 cm is comfortable), and allow for door swings, radiators and other furniture. This tool factors walkway space into its recommendation automatically."}},
+      {"@type": "Question", "name": "What is the standard depth of a sofa?", "acceptedAnswer": {"@type": "Answer", "text": "Most UK sofas are 85–100 cm deep. Compact 2-seaters can be 75–85 cm deep; deep lounge sofas and recliners reach 100–110 cm. Always check the product's depth, not just its width."}},
+      {"@type": "Question", "name": "Will the recommended sofa fit through my door?", "acceptedAnswer": {"@type": "Answer", "text": "This tool recommends a sofa width for your room, but you must separately measure your narrowest doorway (usually 76 cm in UK homes), hallways and stair turns against the sofa's packaged dimensions before ordering."}}
+    ]
+  }
+  </script>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="header-inner">
+    <a class="brand" href="../index.html" aria-label="UK Furniture Guide home">
+      <span class="brand-mark">UK</span>
+      <span class="brand-name">UK Furniture Guide<small>HONEST UK FURNITURE BUYING GUIDES</small></span>
+    </a>
+    <button class="nav-toggle" aria-expanded="false" aria-label="Toggle navigation">☰</button>
+    <nav class="main-nav" aria-label="Main navigation">
+      <ul>
+        <li><a href="../index.html">Home</a></li>
+        <li><a href="../guides/best-sofas-uk.html">Sofas</a></li>
+        <li><a href="../guides/best-beds-uk.html">Beds</a></li>
+        <li><a href="../guides/best-dining-sets-uk.html">Dining Sets</a></li>
+        <li><a href="../guides/best-mattresses-uk.html">Mattresses</a></li>
+        <li><a href="sofa-size-finder.html" class="active">Sofa Size Finder</a></li>
+        <li><a href="../about.html">About</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main>
+<div class="wrap">
+  <p class="breadcrumb"><a href="../index.html">Home</a> › Sofa Size Finder</p>
+
+  <h1>Sofa Size Finder</h1>
+  <p class="section-sub">Free tool · No signup · Instant answer. Enter your room dimensions and we'll recommend the right sofa size — with space left for doors, radiators and real life.</p>
+
+  <div class="in-short"><strong>In short:</strong> measure your room's length and width, tell us the layout, and this tool calculates the maximum sofa width that still leaves a comfortable 75–90 cm walkway — then recommends a 2-seater, 3-seater or corner sofa to match.</div>
+
+  <div class="tool-box">
+    <label>Units</label>
+    <div class="unit-toggle" role="group" aria-label="Measurement units">
+      <button type="button" id="unitM" class="active">Metres</button>
+      <button type="button" id="unitF">Feet</button>
+    </div>
+
+    <label for="roomLength">Room length <span id="lenUnit" style="font-weight:400;color:var(--muted)">(m)</span></label>
+    <input type="number" id="roomLength" min="1" max="30" step="0.1" placeholder="e.g. 4.2" aria-describedby="lenUnit">
+
+    <label for="roomWidth">Room width <span id="widUnit" style="font-weight:400;color:var(--muted)">(m)</span></label>
+    <input type="number" id="roomWidth" min="1" max="30" step="0.1" placeholder="e.g. 3.5" aria-describedby="widUnit">
+
+    <label for="layout">Room layout</label>
+    <select id="layout">
+      <option value="wall">Sofa against one wall (typical living room)</option>
+      <option value="corner">Sofa in a corner / L-shape layout</option>
+      <option value="openplan">Open-plan space (sofa as a divider)</option>
+      <option value="small">Box room / small flat</option>
+    </select>
+    <label for="seats" style="margin-top:14px;display:block">How many people need to sit regularly?</label>
+    <select id="seats">
+      <option value="2">1–2 people</option>
+      <option value="4">3–4 people</option>
+      <option value="6">5+ people</option>
+    </select>
+
+    <div style="margin-top:22px">
+      <button class="btn btn-primary" id="calcBtn" type="button" style="width:100%">Find my sofa size →</button>
+    </div>
+
+    <div class="tool-result" id="result" role="status" aria-live="polite"></div>
+  </div>
+
+  <section class="tight">
+    <div class="wrap" style="padding:0">
+      <h2 class="section-title">How the recommendation works</h2>
+      <ul class="check-list">
+        <li><strong>Wall space:</strong> the sofa should span no more than two-thirds of its wall, leaving room for side tables and lamps.</li>
+        <li><strong>Walkways:</strong> we reserve 75–90 cm of clear passage in front of and around the sofa.</li>
+        <li><strong>Depth allowance:</strong> we assume a typical sofa depth of 90 cm when checking the room's other dimension.</li>
+        <li><strong>Layout matters:</strong> corner layouts unlock corner sofas; open-plan rooms suit sofas used as dividers.</li>
+      </ul>
+
+      <h2 class="section-title">Tool FAQs</h2>
+      <div class="faq">
+        <details><summary>How much space should I leave around a sofa?</summary><p>Leave at least 75 cm of clear walkway around the sofa (90 cm is comfortable), and allow for door swings, radiators and other furniture. This tool factors walkway space into its recommendation automatically.</p></details>
+        <details><summary>What is the standard depth of a sofa?</summary><p>Most UK sofas are 85–100 cm deep. Compact 2-seaters can be 75–85 cm deep; deep lounge sofas and recliners reach 100–110 cm. Always check the product's depth, not just its width.</p></details>
+        <details><summary>Will the recommended sofa fit through my door?</summary><p>This tool recommends a sofa width for your room, but you must separately measure your narrowest doorway (usually 76 cm in UK homes), hallways and stair turns against the sofa's packaged dimensions before ordering.</p></details>
+      </div>
+
+      <p style="margin-top:28px">Found your size? Browse our <a href="../guides/best-sofas-uk.html">7 best sofas in the UK (2026)</a> or read the full <a href="../guides/sofa-buying-guide.html">sofa buying guide</a>.</p>
+    </div>
+  </section>
+</div>
+</main>
+
+<div class="disclosure-strip">
+  <div class="wrap">UK Furniture Guide may earn a commission on purchases made through links on this site — <a href="../affiliate-disclosure.html">learn more</a>.</div>
+</div>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div>
+        <h4>UK Furniture Guide</h4>
+        <p style="font-size:14px">Honest UK furniture buying guides. Independent research, real £ prices, practical tools.</p>
+      </div>
+      <div>
+        <h4>Guides</h4>
+        <ul>
+          <li><a href="../guides/best-sofas-uk.html">Best Sofas 2026</a></li>
+          <li><a href="../guides/best-beds-uk.html">Best Beds 2026</a></li>
+          <li><a href="../guides/best-dining-sets-uk.html">Best Dining Sets 2026</a></li>
+          <li><a href="../guides/best-mattresses-uk.html">Best Mattresses 2026</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Learn</h4>
+        <ul>
+          <li><a href="../guides/sofa-buying-guide.html">Sofa Buying Guide</a></li>
+          <li><a href="../guides/bed-buying-guide.html">Bed Buying Guide</a></li>
+          <li><a href="sofa-size-finder.html" class="active">Sofa Size Finder</a></li><li><a href="bed-size-finder.html">Bed Size Finder</a></li><li><a href="dining-size-finder.html">Dining Size Finder</a></li>
+          <li><a href="../about.html">About Us</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Legal</h4>
+        <ul>
+          <li><a href="../affiliate-disclosure.html">Affiliate Disclosure</a></li>
+          <li><a href="../privacy-policy.html">Privacy Policy</a></li>
+          <li><a href="../contact.html">Contact</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">© <span data-year>2026</span> UK Furniture Guide. All rights reserved.</div>
+  </div>
+</footer>
+
+<script>
+/* UK Furniture Guide — shared behaviour: mobile nav toggle. */
+(function () {
+  document.addEventListener("DOMContentLoaded", function () {
+    var toggle = document.querySelector(".nav-toggle");
+    var nav = document.querySelector(".main-nav");
+    if (toggle && nav) {
+      toggle.addEventListener("click", function () {
+        var open = nav.classList.toggle("open");
+        toggle.setAttribute("aria-expanded", open ? "true" : "false");
+      });
+    }
+
+    // Footer year
+    var yearEls = document.querySelectorAll("[data-year]");
+    yearEls.forEach(function (el) { el.textContent = new Date().getFullYear(); });
+  });
+})();
+
+</script>
+<script>
+/* Sofa Size Finder — vanilla JS recommendation logic (v2: seats + visualisation) */
+(function () {
+  var unit = "m";
+  var unitM = document.getElementById("unitM");
+  var unitF = document.getElementById("unitF");
+  var lenUnit = document.getElementById("lenUnit");
+  var widUnit = document.getElementById("widUnit");
+
+  function setUnit(u) {
+    unit = u;
+    unitM.classList.toggle("active", u === "m");
+    unitF.classList.toggle("active", u === "f");
+    lenUnit.textContent = u === "m" ? "(m)" : "(ft)";
+    widUnit.textContent = u === "m" ? "(m)" : "(ft)";
+  }
+  unitM.addEventListener("click", function () { setUnit("m"); });
+  unitF.addEventListener("click", function () { setUnit("f"); });
+
+  function toMetres(v) { return unit === "m" ? v : v * 0.3048; }
+  function fmtM(m) {
+    return m.toFixed(1) + " m (" + (m / 0.3048).toFixed(1) + " ft)";
+  }
+  function fmtShort(m) {
+    return m.toFixed(2).replace(/0$/, "") + " m / " + (m / 0.3048).toFixed(1) + " ft";
+  }
+
+  function drawRoom(lenM, widM, sofaW, sofaD) {
+    var maxPx = 280, pad = 8;
+    var scale = Math.min((maxPx - pad * 2) / lenM, (maxPx - pad * 2) / widM);
+    var rw = Math.max(lenM * scale, 30), rh = Math.max(widM * scale, 30);
+    var sw = Math.min(sofaW * scale, rw - 4), sd = Math.min(sofaD * scale, rh - 4);
+    var sx = (rw - sw) / 2, sy = 4;
+    return '<svg viewBox="0 0 ' + rw + ' ' + rh + '" style="width:100%;max-width:300px;height:auto;display:block;margin:12px auto;" role="img" aria-label="Room layout diagram">' +
+      '<rect x="0" y="0" width="' + rw + '" height="' + rh + '" rx="6" fill="#f1f5f4" stroke="#0E7C7B" stroke-width="2"/>' +
+      '<rect x="' + sx + '" y="' + sy + '" width="' + sw + '" height="' + sd + '" rx="4" fill="#0E7C7B" opacity="0.85"/>' +
+      '<text x="' + (rw / 2) + '" y="' + (rh - 6) + '" text-anchor="middle" font-size="10" fill="#334155">' + fmtShort(lenM) + ' \u00d7 ' + fmtShort(widM) + '</text>' +
+      '<text x="' + (sx + sw / 2) + '" y="' + (sy + sd / 2 + 4) + '" text-anchor="middle" font-size="10" fill="#fff">sofa</text>' +
+      '</svg>';
+  }
+
+  document.getElementById("calcBtn").addEventListener("click", function () {
+    var L = parseFloat(document.getElementById("roomLength").value);
+    var W = parseFloat(document.getElementById("roomWidth").value);
+    var layout = document.getElementById("layout").value;
+    var seats = parseInt(document.getElementById("seats").value, 10);
+    var result = document.getElementById("result");
+
+    if (!L || !W || L <= 0 || W <= 0) {
+      result.innerHTML = "<h3>Almost there\u2026</h3><p>Please enter both your room's length and width so we can calculate.</p>";
+      result.classList.add("show");
+      return;
+    }
+
+    var lenM = toMetres(L), widM = toMetres(W);
+    var longWall = Math.max(lenM, widM);
+    var shortWall = Math.min(lenM, widM);
+
+    var maxSofa = Math.min(longWall * 0.66, 3.0);
+    var otherDim = shortWall;
+    var walkwayOK = (otherDim - 0.9) >= 0.75;
+
+    var rec, why, size, sofaW = Math.min(maxSofa, 2.2), sofaD = 0.9;
+
+    if (layout === "small" || longWall < 2.4) {
+      rec = "Compact 2-seater / loveseat (120\u2013150 cm / 3.9\u20134.9 ft wide)";
+      size = "2-seater";
+      sofaW = 1.4;
+      why = "Your room suits a compact sofa. Anything wider would crowd the space and block walkways.";
+    } else if (seats >= 5 && longWall >= 3.4 && layout !== "small") {
+      rec = "Corner sofa (240\u2013280 cm / 7.9\u20139.2 ft along the long side)";
+      size = "corner sofa";
+      sofaW = 2.6; sofaD = 1.6;
+      why = "With 5+ regular sitters, a corner sofa gives everyone a proper seat without cramming in extra chairs.";
+    } else if (longWall < 3.4) {
+      rec = "2-seater or compact 3-seater (150\u2013190 cm / 4.9\u20136.2 ft wide)";
+      size = "2–3 seater";
+      sofaW = 1.8;
+      why = "A standard 2-seater fits comfortably; a compact 3-seater works if you keep other furniture minimal.";
+    } else if (longWall < 4.6) {
+      rec = "Full 3-seater (190\u2013220 cm / 6.2\u20137.2 ft wide)";
+      size = "3-seater";
+      sofaW = 2.1;
+      why = "The classic UK living-room size. You have room for a proper 3-seater plus side tables.";
+    } else {
+      if (layout === "corner") {
+        rec = "Corner sofa (240\u2013280 cm / 7.9\u20139.2 ft along the long side)";
+        size = "corner sofa";
+        sofaW = 2.6; sofaD = 1.6;
+        why = "Your room is made for a corner sofa — it seats five and anchors the space beautifully.";
+      } else if (layout === "openplan") {
+        rec = "3-seater (200\u2013220 cm / 6.6\u20137.2 ft) used as a room divider, or a corner sofa";
+        size = "3-seater / corner";
+        sofaW = 2.1;
+        why = "In open-plan spaces a sofa works brilliantly as a divider between living and dining zones.";
+      } else {
+        rec = "3-seater (200\u2013220 cm / 6.6\u20137.2 ft) plus a loveseat or armchair";
+        size = "3-seater + chair";
+        sofaW = 2.1;
+        why = "You have the space — a 3-seater plus an accent chair gives flexible seating for guests.";
+      }
+    }
+
+    var warn = walkwayOK
+      ? ""
+      : "<p><strong>Heads up:</strong> your room's shorter dimension is tight — stick to a slim-depth sofa (under 85 cm / 2.8 ft deep) and keep the walkway clear.</p>";
+
+    result.innerHTML =
+      "<h3>Your recommendation: " + rec + "</h3>" +
+      drawRoom(lenM, widM, sofaW, sofaD) +
+      "<p>" + why + "</p>" +
+      "<p>Based on a " + fmtM(lenM) + " \u00d7 " + fmtM(widM) + " room, aim for a sofa no wider than <strong>" + fmtM(maxSofa) + "</strong>.</p>" +
+      warn +
+      '<div class="cta-row">' +
+      '<a class="btn btn-primary" href="https://ukfurnitureonline.co.uk/sofas">Shop ' + size + ' sofas</a>' +
+      '<a class="btn btn-outline" href="https://ukfurnitureonline.co.uk">Browse sofas at UK Furniture Online</a>' +
+      "</div>" +
+      '<p style="font-size:14px;margin-top:14px">Next: compare real models in our <a href="#" onclick="showPage(\'sofas\');return false">7 best sofas in the UK (2026)</a>.</p>';
+
+    result.classList.add("show");
+    result.scrollIntoView({ behavior: "smooth", block: "nearest" });
+  });
+})();
+</script>
+<script>
+(function(){function pad(){var h=document.querySelector('.site-header');if(h){document.body.style.paddingTop=h.offsetHeight+'px';}}
+document.addEventListener('DOMContentLoaded',pad);window.addEventListener('load',pad);window.addEventListener('resize',pad);})();
+</script>
+
+</body>
+</html>

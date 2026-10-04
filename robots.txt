@@ -1,0 +1,20 @@
+# UK Furniture Guide — robots.txt
+# AI crawlers are explicitly ALLOWED (GEO/AEO): we want answer engines
+# to read, understand and cite our buying guides.
+
+User-agent: GPTBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: *
+Allow: /
+
+Sitemap: https://ukfurnitureguide.co.uk/sitemap.xml

@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dining Table Size Finder — What Size Table Fits? (UK) | UK Furniture Guide</title>
+  <meta name="description" content="Free UK dining table size finder: enter your room size and diners, get the right table size and shape in cm and feet.">
+  <meta property="og:title" content="Sofa Size Finder — Free UK Tool | UK Furniture Guide">
+  <meta property="og:description" content="Enter your room size, get the right sofa size instantly. Free tool, no signup.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="/images/og-banner.jpg">
+  <style>
+/* UK Furniture Guide — hand-written stylesheet, no frameworks.
+   Palette: deep teal (#0E7C7B) + vibrant coral (#FF6B35) on warm off-white.
+   Mobile-first, responsive. Brand name appears only in HTML. */
+
+:root {
+  --teal: #0E7C7B;
+  --teal-dark: #095C5B;
+  --teal-ink: #073f3e;
+  --coral: #FF6B35;
+  --coral-dark: #D94F1E;
+  --gold: #E8A33D;
+  --navy: #1F2A44;
+  --navy-dark: #141C30;
+  --bg: #FDFBF7;
+  --card: #FFFFFF;
+  --ink: #2B2F36;
+  --muted: #5F6570;
+  --line: #E9E2D4;
+  --radius: 14px;
+  --max: 1080px;
+  --shadow: 0 3px 14px rgba(14, 124, 123, 0.10);
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  font-family: "Segoe UI", system-ui, -apple-system, Roboto, "Helvetica Neue", Arial, sans-serif;
+  color: var(--ink);
+  background: var(--bg);
+  line-height: 1.65;
+  font-size: 17px;
+}
+img { max-width: 100%; }
+a { color: var(--teal); }
+a:hover { color: var(--teal-dark); }
+
+/* ---------- layout ---------- */
+.wrap { max-width: var(--max); margin: 0 auto; padding: 0 20px; }
+section { padding: 52px 0; }
+section.tight { padding: 30px 0; }
+
+/* ---------- header / nav ---------- */
+.site-header {
+  background: var(--navy);
+  color: #fff;
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  box-shadow: 0 2px 10px rgba(0,0,0,.22);
+  border-bottom: 3px solid var(--coral);
+}
+.header-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 20px;
+  max-width: var(--max);
+  margin: 0 auto;
+}
+.brand { display: flex; align-items: center; gap: 10px; text-decoration: none; color: #fff; }
+.brand-mark {
+  width: 40px; height: 40px; border-radius: 12px;
+  background: linear-gradient(135deg, var(--coral), var(--coral-dark));
+  display: flex; align-items: center; justify-content: center;
+  font-weight: 800; font-size: 22px; color: #fff;
+  box-shadow: 0 2px 8px rgba(255,107,53,.45);
+}
+.brand-name { font-size: 20px; font-weight: 800; letter-spacing: .2px; }
+.brand-name small { display: block; font-size: 11px; font-weight: 400; color: #FFD9C4; letter-spacing: .8px; }
+.nav-toggle {
+  display: none;
+  background: none; border: 2px solid var(--coral); color: #fff;
+  border-radius: 8px; font-size: 20px; padding: 4px 12px; cursor: pointer;
+}
+.main-nav ul { display: flex; gap: 4px; list-style: none; margin: 0; padding: 0; }
+.main-nav a {
+  color: #EDEFF5; text-decoration: none; font-size: 15px; font-weight: 600;
+  padding: 8px 12px; border-radius: 8px;
+}
+.main-nav a:hover, .main-nav a.active { background: rgba(255,107,53,.18); color: #fff; }
+.main-nav a.active { box-shadow: inset 0 -3px 0 var(--coral); border-radius: 8px 8px 0 0; }
+
+/* ---------- hero ---------- */
+.hero {
+  background:
+    radial-gradient(1100px 340px at 85% -10%, rgba(255,107,53,.28), transparent 60%),
+    linear-gradient(120deg, var(--navy) 0%, #274b5e 55%, var(--teal-dark) 115%);
+  color: #fff;
+  padding: 78px 0 68px;
+}
+.hero h1 { font-size: 2.5rem; margin: 0 0 12px; line-height: 1.18; }
+.hero h1 .pop { color: var(--coral); }
+.hero p.lead { font-size: 1.15rem; color: #E4EAF3; max-width: 660px; }
+.hero-cta { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 26px; }
+
+/* ---------- buttons ---------- */
+.btn {
+  display: inline-block;
+  padding: 13px 24px;
+  border-radius: 12px;
+  font-weight: 800;
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  transition: transform .08s ease, background .15s ease, box-shadow .15s ease;
+}
+.btn:active { transform: scale(.97); }
+.btn-primary {
+  background: linear-gradient(135deg, var(--coral), var(--coral-dark));
+  color: #fff;
+  box-shadow: 0 4px 14px rgba(255,107,53,.35);
+}
+.btn-primary:hover { background: var(--coral-dark); color: #fff; box-shadow: 0 6px 18px rgba(255,107,53,.5); }
+.btn-secondary { background: var(--teal); color: #fff; box-shadow: 0 4px 14px rgba(14,124,123,.3); }
+.btn-secondary:hover { background: var(--teal-dark); color: #fff; }
+.btn-ghost { background: transparent; color: #fff; border: 2px solid #fff; }
+.btn-ghost:hover { border-color: var(--coral); color: var(--coral); }
+.btn-outline { background: #fff; color: var(--teal-dark); border: 2px solid var(--teal); }
+.btn-outline:hover { background: var(--teal); border-color: var(--teal); color: #fff; }
+
+/* ---------- cards / grids ---------- */
+.grid { display: grid; gap: 22px; }
+.grid-3 { grid-template-columns: repeat(3, 1fr); }
+.grid-2 { grid-template-columns: repeat(2, 1fr); }
+.card {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 26px;
+  display: flex;
+  flex-direction: column;
+  transition: transform .12s ease, box-shadow .12s ease;
+}
+.card:hover { transform: translateY(-3px); box-shadow: 0 8px 22px rgba(14,124,123,.14); }
+.card h3 { margin: 0 0 8px; font-size: 1.2rem; }
+.card h3 a { color: var(--navy); text-decoration: none; }
+.card h3 a:hover { color: var(--coral-dark); }
+.card p { color: var(--muted); font-size: 15px; flex: 1; }
+.card .card-link { font-weight: 700; margin-top: 10px; color: var(--coral-dark); }
+
+/* product card (listicles) */
+.product-card {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-top: 4px solid var(--teal);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 28px;
+  margin-bottom: 30px;
+  position: relative;
+}
+.product-card .rank {
+  position: absolute; top: -15px; left: 24px;
+  background: var(--teal); color: #fff;
+  font-weight: 800; font-size: 14px;
+  padding: 5px 16px; border-radius: 20px;
+  box-shadow: 0 3px 8px rgba(14,124,123,.35);
+}
+.product-card .rank.top {
+  background: linear-gradient(135deg, var(--coral), var(--coral-dark));
+  color: #fff;
+  box-shadow: 0 3px 10px rgba(255,107,53,.45);
+}
+.product-card h2 { margin: 8px 0 4px; font-size: 1.45rem; color: var(--navy); }
+.stars { color: var(--gold); font-size: 19px; letter-spacing: 2px; text-shadow: 0 1px 0 rgba(0,0,0,.06); }
+.price { font-size: 1.35rem; font-weight: 800; color: var(--teal-dark); margin: 8px 0; }
+.specs { width: 100%; border-collapse: collapse; margin: 12px 0; font-size: 15px; }
+.specs th, .specs td { text-align: left; padding: 7px 10px; border-bottom: 1px solid var(--line); }
+.specs th { width: 38%; color: var(--muted); font-weight: 600; }
+.pros-cons { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 14px 0; }
+.pros-cons h4 { margin: 0 0 6px; font-size: 15px; }
+.pros ul, .cons ul { margin: 0; padding-left: 20px; font-size: 15px; }
+.pros h4 { color: var(--teal-dark); }
+.cons h4 { color: #B23A3A; }
+.cta-row { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 16px; }
+
+/* image placeholder block */
+.img-placeholder {
+  background: linear-gradient(135deg, #E7F3F1, #FDEBDD);
+  border: 2px dashed #9CC5C2;
+  border-radius: var(--radius);
+  min-height: 190px;
+  display: flex; align-items: center; justify-content: center;
+  color: #5E7B79; font-weight: 700; text-align: center;
+  padding: 20px; margin-bottom: 16px; font-size: 15px;
+}
+
+/* quotable fact block (AEO/GEO) */
+.fact-box {
+  background: linear-gradient(135deg, #E6F5F3, #FFF3E8);
+  border: 1px solid var(--line);
+  border-left: 6px solid var(--coral);
+  border-radius: 0 var(--radius) var(--radius) 0;
+  padding: 20px 24px;
+  margin: 26px 0;
+}
+.fact-box h3, .fact-box h4 { margin: 0 0 8px; color: var(--navy); }
+.fact-box p, .fact-box li { margin: 6px 0; }
+.fact-box ul { margin: 8px 0; padding-left: 20px; }
+.in-short {
+  background: #fff;
+  border: 2px solid var(--teal);
+  border-radius: var(--radius);
+  padding: 20px 24px;
+  margin: 22px 0 28px;
+  box-shadow: var(--shadow);
+}
+.in-short strong { color: var(--teal-dark); }
+
+/* ---------- tool ---------- */
+.tool-box {
+  background: var(--card); border: 1px solid var(--line);
+  border-top: 4px solid var(--coral);
+  border-radius: var(--radius); box-shadow: var(--shadow);
+  padding: 32px; max-width: 720px; margin: 0 auto;
+}
+.tool-box label { display: block; font-weight: 700; margin: 16px 0 6px; color: var(--navy); }
+.tool-box input[type="number"], .tool-box select {
+  width: 100%; padding: 12px; font-size: 16px;
+  border: 2px solid var(--line); border-radius: 10px; background: #fff;
+}
+.tool-box input:focus, .tool-box select:focus { border-color: var(--teal); outline: none; box-shadow: 0 0 0 3px rgba(14,124,123,.15); }
+.unit-toggle { display: flex; gap: 8px; margin-top: 6px; }
+.unit-toggle button {
+  flex: 1; padding: 10px; border: 2px solid var(--line); background: #fff;
+  border-radius: 10px; font-weight: 700; cursor: pointer; font-size: 15px; color: var(--muted);
+}
+.unit-toggle button.active { border-color: var(--teal); background: #E2F3F1; color: var(--teal-dark); }
+.tool-result {
+  display: none; margin-top: 24px; padding: 26px;
+  background: linear-gradient(135deg, #E6F5F3, #FFF6EC);
+  border: 2px solid var(--teal); border-radius: var(--radius);
+}
+.tool-result.show { display: block; }
+.tool-result h3 { margin-top: 0; color: var(--teal-dark); }
+
+/* ---------- faq ---------- */
+.faq details {
+  background: var(--card); border: 1px solid var(--line);
+  border-radius: 12px; margin-bottom: 12px; padding: 4px 20px;
+}
+.faq details[open] { border-color: var(--teal); }
+.faq summary { cursor: pointer; font-weight: 700; padding: 14px 0; color: var(--navy); font-size: 17px; }
+.faq summary::-webkit-details-marker { color: var(--coral); }
+.faq summary::marker { color: var(--coral); }
+.faq p { margin-top: 0; color: var(--muted); }
+
+/* ---------- trust / misc ---------- */
+.trust-band { background: linear-gradient(135deg, var(--navy) 0%, #274b5e 70%, var(--teal-dark) 130%); color: #E9EDF5; }
+.trust-band h2 { color: #fff; }
+.check-list { list-style: none; padding: 0; }
+.check-list li { padding: 8px 0 8px 36px; position: relative; }
+.check-list li::before {
+  content: "✓"; position: absolute; left: 0; top: 6px;
+  background: var(--coral); color: #fff; font-weight: 800; font-size: 15px;
+  width: 24px; height: 24px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+}
+.notice {
+  background: #FFF6E9; border-left: 6px solid var(--coral);
+  padding: 16px 20px; border-radius: 0 12px 12px 0; margin: 24px 0; font-size: 15px;
+}
+table.compare { width: 100%; border-collapse: collapse; background: #fff; font-size: 15px; margin: 18px 0; box-shadow: var(--shadow); border-radius: 8px; overflow: hidden; }
+table.compare th, table.compare td { border: 1px solid var(--line); padding: 10px 12px; text-align: left; }
+table.compare th { background: var(--teal); color: #fff; }
+table.compare tr:nth-child(even) td { background: #F7FBFA; }
+.breadcrumb { font-size: 14px; color: var(--muted); margin: 18px 0 0; }
+.breadcrumb a { color: var(--teal); text-decoration: none; }
+h2.section-title { color: var(--navy); font-size: 1.7rem; margin-bottom: 6px; }
+h2.section-title::after {
+  content: ""; display: block; width: 58px; height: 4px;
+  background: linear-gradient(90deg, var(--coral), var(--gold));
+  border-radius: 3px; margin-top: 10px;
+}
+.trust-band h2.section-title::after { background: linear-gradient(90deg, var(--coral), var(--gold)); }
+p.section-sub { color: var(--muted); margin-top: 0; }
+h2.q { color: var(--navy); font-size: 1.45rem; margin-top: 38px; }
+
+/* newsletter */
+.newsletter {
+  background: #fff; border: 1px solid var(--line); border-top: 4px solid var(--coral);
+  border-radius: var(--radius); padding: 34px; text-align: center; box-shadow: var(--shadow);
+}
+.newsletter form { display: flex; gap: 10px; max-width: 480px; margin: 18px auto 0; }
+.newsletter input[type="email"] { flex: 1; padding: 12px; font-size: 16px; border: 2px solid var(--line); border-radius: 10px; }
+.newsletter input[type="email"]:focus { border-color: var(--teal); outline: none; }
+
+/* forms */
+.form-row { margin-bottom: 16px; }
+.form-row label { display: block; font-weight: 700; margin-bottom: 6px; color: var(--navy); }
+.form-row input, .form-row textarea, .form-row select {
+  width: 100%; padding: 12px; font-size: 16px; border: 2px solid var(--line); border-radius: 10px; font-family: inherit; background: #fff;
+}
+.form-row input:focus, .form-row textarea:focus { border-color: var(--teal); outline: none; }
+.form-row textarea { min-height: 140px; resize: vertical; }
+
+/* ---------- footer ---------- */
+.site-footer { background: var(--navy-dark); color: #B9C2D6; padding: 52px 0 24px; margin-top: 44px; border-top: 4px solid var(--coral); }
+.footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 28px; }
+.site-footer h4 { color: #fff; margin-top: 0; font-size: 16px; }
+.site-footer a { color: #B9C2D6; text-decoration: none; font-size: 15px; }
+.site-footer a:hover { color: var(--coral); }
+.site-footer ul { list-style: none; padding: 0; margin: 0; }
+.site-footer li { margin-bottom: 8px; }
+.footer-bottom { border-top: 1px solid #2C3A58; margin-top: 32px; padding-top: 20px; font-size: 13px; text-align: center; }
+.disclosure-strip { background: #FFF3E8; color: #7A5A3A; font-size: 13.5px; padding: 13px 0; text-align: center; border-top: 1px solid #F0DCC2; }
+.disclosure-strip a { color: var(--coral-dark); font-weight: 700; }
+
+/* ---------- responsive ---------- */
+@media (max-width: 860px) {
+  .grid-3 { grid-template-columns: 1fr; }
+  .grid-2 { grid-template-columns: 1fr; }
+  .footer-grid { grid-template-columns: 1fr 1fr; }
+  .hero h1 { font-size: 1.95rem; }
+  .pros-cons { grid-template-columns: 1fr; }
+}
+@media (max-width: 640px) {
+  .nav-toggle { display: block; }
+  .main-nav { display: none; width: 100%; }
+  .main-nav.open { display: block; }
+  .main-nav ul { flex-direction: column; padding: 10px 0 16px; }
+  .header-inner { flex-wrap: wrap; }
+  .newsletter form { flex-direction: column; }
+  .footer-grid { grid-template-columns: 1fr; }
+  section { padding: 36px 0; }
+}
+
+
+/* Sticky visible category nav (no hamburger) */
+.site-header{position:fixed !important;top:0;left:0;right:0;z-index:200;box-shadow:0 2px 12px rgba(0,0,0,.12);}
+.nav-toggle{display:none !important;}
+.main-nav{display:block !important;width:100%;}
+.main-nav ul{display:flex !important;flex-direction:row !important;overflow-x:auto;white-space:nowrap;
+  padding:6px 0 10px;margin:0;gap:2px;scrollbar-width:none;-webkit-overflow-scrolling:touch;}
+.main-nav ul::-webkit-scrollbar{display:none;}
+.main-nav li{flex:0 0 auto;}
+.main-nav a{white-space:nowrap;font-size:14px;padding:8px 12px;}
+.header-inner{flex-wrap:wrap;}
+
+
+/* Bulletproof sticky header + smooth category slider */
+.site-header{position:fixed !important;top:0;left:0;right:0;z-index:200;box-shadow:0 2px 12px rgba(0,0,0,.12);}
+.main-nav ul{touch-action:pan-x;scroll-snap-type:x proximity;}
+.main-nav li{scroll-snap-align:start;}
+.main-nav a{font-size:13px;padding:8px 10px;}
+
+
+.container{max-width:1100px;margin:0 auto;padding:0 18px;}
+</style>
+  
+  
+  
+  
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Organization","name":"UK Furniture Guide","url":"https://ukfurnitureguide.co.uk/"}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","name":"Dining Table Size Finder","url":"https://ukfurnitureguide.co.uk/tools/dining-size-finder.html"}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What size dining table seats 6?","acceptedAnswer":{"@type":"Answer","text":"A 6-seater dining table is typically 150–180 cm × 90 cm (4.9–5.9 ft × 3.0 ft)."}},{"@type":"Question","name":"How much space behind dining chairs?","acceptedAnswer":{"@type":"Answer","text":"Allow 75 cm (2.5 ft) between the table edge and the wall so chairs pull out comfortably."}}]}
+</script>
+</head>
+<body>
+<header class="site-header">
+  <div class="header-inner">
+    <a class="brand" href="../index.html" aria-label="UK Furniture Guide home">
+      <span class="brand-mark">UK</span>
+      <span class="brand-name">UK Furniture Guide<small>HONEST UK FURNITURE BUYING GUIDES</small></span>
+    </a>
+    <button class="nav-toggle" aria-expanded="false" aria-label="Toggle navigation">☰</button>
+    <nav class="main-nav" aria-label="Main navigation">
+      <ul>
+        <li><a href="../index.html">Home</a></li>
+        <li><a href="../guides/best-sofas-uk.html">Sofas</a></li>
+        <li><a href="../guides/best-beds-uk.html">Beds</a></li>
+        <li><a href="../guides/best-dining-sets-uk.html">Dining Sets</a></li>
+        <li><a href="../guides/best-mattresses-uk.html">Mattresses</a></li>
+        <li><a href="sofa-size-finder.html">Sofa Size Finder</a></li>
+        <li><a href="../about.html">About</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+<main>
+<div class="container">
+  <h1>Dining Table Size Finder — What Size Table Fits? (UK)</h1>
+  <p class="lede"><strong>In short:</strong> tell us your room size and how many people eat together, and we'll recommend the right table size and shape — with elbow room to spare.</p>
+  <div class="tool-box">
+    <div class="tool-grid">
+      <div>
+        <label>Units</label>
+        <div><button type="button" id="unitM" class="active">Metres</button>
+        <button type="button" id="unitF">Feet</button></div>
+      </div>
+      <div>
+        <label for="roomLength">Room length <span id="lenUnit">(m)</span></label>
+        <input type="number" id="roomLength" min="1" max="30" step="0.1" placeholder="e.g. 3.4">
+      </div>
+      <div>
+        <label for="roomWidth">Room width <span id="widUnit">(m)</span></label>
+        <input type="number" id="roomWidth" min="1" max="30" step="0.1" placeholder="e.g. 2.8">
+      </div>
+      <div>
+        <label for="diners">How many diners?</label>
+        <select id="diners">
+          <option value="2">2 people</option>
+          <option value="4" selected>4 people</option>
+          <option value="6">6 people</option>
+          <option value="8">8 people</option>
+        </select>
+      </div>
+    </div>
+    <div style="margin-top:22px">
+      <button class="btn btn-primary" id="calcBtn" type="button" style="width:100%">Find my table size →</button>
+    </div>
+    <div class="tool-result" id="result" role="status" aria-live="polite"></div>
+  </div>
+  <section class="tight">
+    <h2 class="section-title">Dining table sizes, explained</h2>
+    <table class="specs">
+      <tr><th>Seats</th><th>Table size</th><th>Shape tip</th></tr>
+      <tr><td>2</td><td>75–90 cm / 2.5–3.0 ft round or square</td><td>Round suits small kitchens</td></tr>
+      <tr><td>4</td><td>120 × 75 cm / 3.9 × 2.5 ft</td><td>The UK standard</td></tr>
+      <tr><td>6</td><td>150–180 × 90 cm / 4.9–5.9 × 3.0 ft</td><td>Extending saves space daily</td></tr>
+      <tr><td>8</td><td>200–220 × 100 cm / 6.6–7.2 × 3.3 ft</td><td>Needs a dedicated dining room</td></tr>
+    </table>
+    <p>Allow 75 cm (2.5 ft) between the table edge and the wall so chairs pull out comfortably, and 60 cm (2 ft) of table width per person.</p>
+  </section>
+</div>
+</main>
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div>
+        <h4>UK Furniture Guide</h4>
+        <p style="font-size:14px">Honest UK furniture buying guides. Independent research, real £ prices, practical tools.</p>
+      </div>
+      <div>
+        <h4>Guides</h4>
+        <ul>
+          <li><a href="../guides/best-sofas-uk.html">Best Sofas 2026</a></li>
+          <li><a href="../guides/best-beds-uk.html">Best Beds 2026</a></li>
+          <li><a href="../guides/best-dining-sets-uk.html">Best Dining Sets 2026</a></li>
+          <li><a href="../guides/best-mattresses-uk.html">Best Mattresses 2026</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Learn</h4>
+        <ul>
+          <li><a href="../guides/sofa-buying-guide.html">Sofa Buying Guide</a></li>
+          <li><a href="../guides/bed-buying-guide.html">Bed Buying Guide</a></li>
+          <li><a href="sofa-size-finder.html">Sofa Size Finder</a></li><li><a href="bed-size-finder.html">Bed Size Finder</a></li><li><a href="dining-size-finder.html" class="active">Dining Size Finder</a></li>
+          <li><a href="../about.html">About Us</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Legal</h4>
+        <ul>
+          <li><a href="../affiliate-disclosure.html">Affiliate Disclosure</a></li>
+          <li><a href="../privacy-policy.html">Privacy Policy</a></li>
+          <li><a href="../contact.html">Contact</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">© <span data-year>2026</span> UK Furniture Guide. All rights reserved.</div>
+  </div>
+</footer>
+<script>
+
+/* UK Furniture Guide — shared behaviour: mobile nav toggle. */
+(function () {
+  document.addEventListener("DOMContentLoaded", function () {
+    var toggle = document.querySelector(".nav-toggle");
+    var nav = document.querySelector(".main-nav");
+    if (toggle && nav) {
+      toggle.addEventListener("click", function () {
+        var open = nav.classList.toggle("open");
+        toggle.setAttribute("aria-expanded", open ? "true" : "false");
+      });
+    }
+
+    // Footer year
+    var yearEls = document.querySelectorAll("[data-year]");
+    yearEls.forEach(function (el) { el.textContent = new Date().getFullYear(); });
+  });
+})();
+
+
+</script>
+<script>
+
+(function () {
+  var unit = "m";
+  var unitM = document.getElementById("unitM"), unitF = document.getElementById("unitF");
+  var lenUnit = document.getElementById("lenUnit"), widUnit = document.getElementById("widUnit");
+  function setUnit(u){ unit=u; unitM.classList.toggle("active",u==="m"); unitF.classList.toggle("active",u==="f");
+    lenUnit.textContent=u==="m"?"(m)":"(ft)"; widUnit.textContent=u==="m"?"(m)":"(ft)"; }
+  unitM.addEventListener("click",function(){setUnit("m");});
+  unitF.addEventListener("click",function(){setUnit("f");});
+  function toMetres(v){ return unit==="m"?v:v*0.3048; }
+  function fmtM(m){ return m.toFixed(1)+" m ("+(m/0.3048).toFixed(1)+" ft)"; }
+  function drawRoom(lenM,widM,tabL,tabW){
+    var maxPx=280,pad=8;
+    var scale=Math.min((maxPx-pad*2)/lenM,(maxPx-pad*2)/widM);
+    var rw=Math.max(lenM*scale,30),rh=Math.max(widM*scale,30);
+    var tw=Math.min(tabL*scale,rw-4),th=Math.min(tabW*scale,rh-4);
+    var tx=(rw-tw)/2,ty=(rh-th)/2;
+    return '<svg viewBox="0 0 '+rw+' '+rh+'" style="width:100%;max-width:300px;height:auto;display:block;margin:12px auto;" role="img" aria-label="Room layout diagram">'+
+    '<rect x="0" y="0" width="'+rw+'" height="'+rh+'" rx="6" fill="#f1f5f4" stroke="#0E7C7B" stroke-width="2"/>'+
+    '<rect x="'+tx+'" y="'+ty+'" width="'+tw+'" height="'+th+'" rx="4" fill="#0E7C7B" opacity="0.85"/>'+
+    '<text x="'+(tx+tw/2)+'" y="'+(ty+th/2+4)+'" text-anchor="middle" font-size="10" fill="#fff">table</text></svg>';
+  }
+  document.getElementById("calcBtn").addEventListener("click",function(){
+    var L=parseFloat(document.getElementById("roomLength").value);
+    var W=parseFloat(document.getElementById("roomWidth").value);
+    var diners=parseInt(document.getElementById("diners").value,10);
+    var result=document.getElementById("result");
+    if(!L||!W||L<=0||W<=0){ result.innerHTML="<h3>Almost there…</h3><p>Please enter both room dimensions.</p>"; result.classList.add("show"); return; }
+    var lenM=toMetres(L),widM=toMetres(W);
+    var availL=Math.max(lenM,widM)-1.5, availW=Math.min(lenM,widM)-1.5;
+    var rec,size,tabL,tabW;
+    if(diners<=2){ rec="Small round or square table (75\u201390 cm / 2.5\u20133.0 ft)"; size="2-seater"; tabL=0.85; tabW=0.85; }
+    else if(diners<=4){ rec="Rectangular table (120 \u00d7 75 cm / 3.9 \u00d7 2.5 ft)"; size="4-seater"; tabL=1.2; tabW=0.75; }
+    else if(diners<=6){ rec="Rectangular or extending table (150\u2013180 \u00d7 90 cm / 4.9\u20135.9 \u00d7 3.0 ft)"; size="6-seater"; tabL=1.65; tabW=0.9; }
+    else { rec="Large table (200\u2013220 \u00d7 100 cm / 6.6\u20137.2 \u00d7 3.3 ft)"; size="8-seater"; tabL=2.1; tabW=1.0; }
+    var warn=(tabL<=availL&&tabW<=availW)?"":"<p><strong>Heads up:</strong> this table is tight for your room — consider an extending table you open only when guests come.</p>";
+    result.innerHTML="<h3>Your recommendation: "+rec+"</h3>"+drawRoom(lenM,widM,tabL,tabW)+
+    "<p>Based on a "+fmtM(lenM)+" \u00d7 "+fmtM(widM)+" room, allowing 75 cm behind each chair.</p>"+warn+
+    '<div class="cta-row"><a class="btn btn-primary" href="https://ukfurnitureonline.co.uk/dining-table">Shop '+size+' dining sets</a>'+
+    '<a class="btn btn-outline" href="https://ukfurnitureonline.co.uk">Browse dining at UK Furniture Online</a></div>';
+    result.classList.add("show"); result.scrollIntoView({behavior:"smooth",block:"nearest"});
+  });
+})();
+
+</script>
+<script>
+(function(){function pad(){var h=document.querySelector('.site-header');if(h){document.body.style.paddingTop=h.offsetHeight+'px';}}
+document.addEventListener('DOMContentLoaded',pad);window.addEventListener('load',pad);window.addEventListener('resize',pad);})();
+</script>
+
+</body>
+</html>
