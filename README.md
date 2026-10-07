@@ -15,7 +15,7 @@ python3 -m http.server 8000
 ## What to replace before launch
 
 1. **Domain** — the site assumes `https://ukfurnitureguide.co.uk/`. Search-and-replace `ukfurnitureguide.co.uk` with your real domain in: all `.html` files (JSON-LD blocks, og tags), `sitemap.xml`, `robots.txt`, `llms.txt`.
-2. **Affiliate links** — every "Check Price" button points to `https://www.amazon.co.uk/dp/PLACEHOLDER` and is marked with `<!-- REPLACE WITH YOUR AMAZON AFFILIATE LINK -->`. Replace with your real Amazon Associates links (include your tracking tag). Buttons marked `<!-- REPLACE WITH YOUR AWIN/WAYFAIR AFFILIATE LINK -->` (currently `href="#"`) need your Awin/Wayfair links.
+2. **Affiliate links** — every "Check Price" button points to `https://www.amazon.co.uk/dp/PLACEHOLDER` and is marked with `<!-- REPLACE WITH YOUR AMAZON AFFILIATE LINK -->`. Replace with your real Amazon Associates links (include your tracking tag). (Awin account was closed by Awin compliance on 2026-10-06, so no Awin merchant links are used; non-Amazon retailer buttons are plain non-affiliate links.)
 3. **Product images** — every product card has a styled placeholder block plus an HTML comment with suggested alt text, e.g.:
    `<!-- IMAGE: replace with product photo of "…". Suggested alt text: "…" -->`
    Add real photos to an `images/` folder and swap the placeholder divs for `<img>` tags using the suggested alt text. Also create `/images/og-banner.jpg` (1200×630) — og tags already reference it.
@@ -31,7 +31,7 @@ python3 -m http.server 8000
 - [ ] Static hosting chosen (Netlify, Vercel, Cloudflare Pages, or any cheap shared host — all fine for static files)
 - [ ] Domain replaced everywhere (see above)
 - [ ] Real affiliate links in place (Amazon Associates approved — needs a live site with content first)
-- [ ] Awin application submitted (Wayfair UK + furniture merchants)
+- [x] Awin application — account CLOSED by Awin compliance on 2026-10-06 (decision final, not reconsidered); do not reapply under the same details
 - [ ] Product images added with alt text; og-banner.jpg created
 - [ ] Contact form backend connected
 - [ ] Cookie consent banner added
