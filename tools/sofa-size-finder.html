@@ -720,10 +720,11 @@ h1, h2, h3 { overflow-wrap: break-word; }
       drawRoom(lenM, widM, sofaW, sofaD) +
       "<p>" + why + "</p>" +
       "<p>Based on a " + fmtM(lenM) + " \u00d7 " + fmtM(widM) + " room, aim for a sofa no wider than <strong>" + fmtM(maxSofa) + "</strong>.</p>" +
-      warn +
-      var matches = matchingSofas(Math.round(maxSofa * 100));
-      var matchHtml = "";
-      if (matches.length) {
+      warn;
+
+    var matches = matchingSofas(Math.round(maxSofa * 100));
+    var matchHtml = "";
+    if (matches.length) {
         matchHtml = '<div style="margin-top:20px"><h4 style="margin:0 0 10px;color:var(--navy)">Sofas that fit your room \u2014 real picks with Cash on Delivery:</h4>';
         matches.forEach(function(p, i) {
           matchHtml += '<div style="background:#fff;border:1px solid var(--line);border-radius:12px;padding:14px 16px;margin-bottom:10px">' +
@@ -733,10 +734,12 @@ h1, h2, h3 { overflow-wrap: break-word; }
         });
         matchHtml += "</div>";
       }
+
+    result.innerHTML +=
       '<div class="cta-row">' +
       '<a class="btn btn-outline" href="../guides/best-sofas-uk.html">See all 7 best sofas</a>' +
       "</div>" + matchHtml +
-      '<p style="font-size:14px;margin-top:14px">Next: compare real models in our <a href="#" onclick="showPage(\'sofas\');return false">7 best sofas in the UK (2026)</a>.</p>';
+      '<p style="font-size:14px;margin-top:14px">Next: compare real models in our <a href="../best-sofas-uk.html">9 best sofas in the UK (2026)</a>.</p>';
 
     result.classList.add("show");
     result.scrollIntoView({ behavior: "smooth", block: "nearest" });
