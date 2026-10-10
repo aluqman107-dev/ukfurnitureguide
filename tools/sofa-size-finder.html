@@ -622,12 +622,16 @@ h1, h2, h3 { overflow-wrap: break-word; }
     var armW = Math.max(sw * 0.12, 8);
     var sofaCm = Math.round(sofaW * 100);
     var s = "";
-    s += '<svg viewBox="0 0 ' + W + ' ' + H + '" style="width:100%;max-width:340px;height:auto;display:block;margin:14px auto;" role="img" aria-label="Room layout with recommended sofa size">';
+    s += '<svg id="roomSvg" viewBox="0 0 ' + W + ' ' + H + '" style="width:100%;max-width:340px;height:auto;display:block;margin:14px auto;" role="img" aria-label="Room layout with recommended sofa size"' +
+      ' data-ox="' + ox + '" data-oy="' + oy + '" data-rw="' + rw + '" data-rh="' + rh + '"' +
+      ' data-sw="' + sw + '" data-sd="' + sd + '" data-sx="' + sx + '" data-sy="' + sy + '">';
     // room
     s += '<rect x="' + ox + '" y="' + oy + '" width="' + rw + '" height="' + rh + '" rx="6" fill="#f4faf9" stroke="#0E7C7B" stroke-width="2.5"/>';
     // wall labels
     s += '<text x="' + (ox + rw/2) + '" y="' + (oy - 8) + '" text-anchor="middle" font-size="12" font-weight="700" fill="#0E7C7B">' + lenM.toFixed(1) + ' m</text>';
     s += '<text x="' + (ox - 8) + '" y="' + (oy + rh/2) + '" text-anchor="end" font-size="12" font-weight="700" fill="#0E7C7B" transform="rotate(-90 ' + (ox-8) + ' ' + (oy+rh/2) + ')">' + widM.toFixed(1) + ' m</text>';
+    // draggable sofa group (sofa + walkway guide move together)
+    s += '<g id="dragSofa" style="cursor:move;touch-action:none">';
     // walkway dashed line
     var wy = sy + sd + 14;
     if (wy < oy + rh - 8) {
@@ -645,8 +649,65 @@ h1, h2, h3 { overflow-wrap: break-word; }
     // size label ON the sofa
     s += '<text x="' + (sx+sw/2) + '" y="' + (sy+sd*0.72) + '" text-anchor="middle" font-size="13" font-weight="800" fill="#ffffff">' + sofaCm + ' cm</text>';
     s += '<text x="' + (sx+sw/2) + '" y="' + (sy+sd*0.72+14) + '" text-anchor="middle" font-size="10" fill="#e6f4f3">recommended width</text>';
+    s += '</g>';
     s += '</svg>';
+    s += '<p style="text-align:center;font-size:13px;color:#5F6570;margin:4px 0 0">\u270b Tip: drag the sofa around the room to try different spots</p>';
     return s;
+  }
+
+  /* Draggable sofa: mouse + touch, clamped inside the room */
+  var drag = { g: null, svg: null, ox: 0, oy: 0, rw: 0, rh: 0, sw: 0, sd: 0, sx: 0, sy: 0, dx: 0, dy: 0, on: false, px: 0, py: 0 };
+
+  function dragPoint(e) {
+    var r = drag.svg.getBoundingClientRect();
+    var cx = e.touches ? e.touches[0].clientX : e.clientX;
+    var cy = e.touches ? e.touches[0].clientY : e.clientY;
+    var vb = drag.svg.viewBox.baseVal;
+    return { x: (cx - r.left) * vb.width / r.width, y: (cy - r.top) * vb.height / r.height };
+  }
+  function dragClamp() {
+    drag.dx = Math.max(drag.ox - drag.sx, Math.min(drag.dx, drag.ox + drag.rw - drag.sx - drag.sw));
+    drag.dy = Math.max(drag.oy - drag.sy, Math.min(drag.dy, drag.oy + drag.rh - drag.sy - drag.sd));
+    drag.g.setAttribute("transform", "translate(" + drag.dx + "," + drag.dy + ")");
+  }
+  document.addEventListener("mousemove", function (e) {
+    if (!drag.on || !drag.g) return;
+    var p = dragPoint(e);
+    drag.dx = p.x - drag.px; drag.dy = p.y - drag.py;
+    dragClamp();
+  });
+  document.addEventListener("touchmove", function (e) {
+    if (!drag.on || !drag.g) return;
+    var p = dragPoint(e);
+    drag.dx = p.x - drag.px; drag.dy = p.y - drag.py;
+    dragClamp();
+    e.preventDefault();
+  }, { passive: false });
+  function dragEnd() {
+    if (drag.g) drag.g.style.cursor = "move";
+    drag.on = false;
+  }
+  document.addEventListener("mouseup", dragEnd);
+  document.addEventListener("touchend", dragEnd);
+
+  function makeDraggable() {
+    var g = document.getElementById("dragSofa");
+    var svg = document.getElementById("roomSvg");
+    if (!g || !svg) return;
+    ["ox", "oy", "rw", "rh", "sw", "sd", "sx", "sy"].forEach(function (k) { drag[k] = parseFloat(svg.dataset[k]); });
+    drag.g = g; drag.svg = svg; drag.dx = 0; drag.dy = 0; drag.on = false;
+    function start(e) {
+      var r = svg.getBoundingClientRect();
+      var cx = e.touches ? e.touches[0].clientX : e.clientX;
+      var cy = e.touches ? e.touches[0].clientY : e.clientY;
+      var vb = svg.viewBox.baseVal;
+      var px = (cx - r.left) * vb.width / r.width, py = (cy - r.top) * vb.height / r.height;
+      drag.on = true; drag.px = px - drag.dx; drag.py = py - drag.dy;
+      g.style.cursor = "grabbing";
+      e.preventDefault();
+    }
+    g.addEventListener("mousedown", start);
+    g.addEventListener("touchstart", start, { passive: false });
   }
 
   document.getElementById("calcBtn").addEventListener("click", function () {
@@ -742,6 +803,7 @@ h1, h2, h3 { overflow-wrap: break-word; }
       '<p style="font-size:14px;margin-top:14px">Next: compare real models in our <a href="../best-sofas-uk.html">9 best sofas in the UK (2026)</a>.</p>';
 
     result.classList.add("show");
+    makeDraggable();
     result.scrollIntoView({ behavior: "smooth", block: "nearest" });
   });
 })();
