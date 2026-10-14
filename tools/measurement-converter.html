@@ -1,0 +1,666 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Furniture Measurement Converter (UK) — cm to Inches & Feet | UK Furniture Guide</title>
+  <meta name="description" content="Free UK furniture measurement converter: instantly convert cm to inches and feet+inches. Includes a quick reference table of standard UK bed, sofa and doorway sizes.">
+  <meta property="og:title" content="Measurement Converter — Free UK Tool | UK Furniture Guide">
+  <meta property="og:description" content="Convert cm, inches and feet+inches instantly. Free tool, no signup.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="/images/og-banner.jpg">
+  <style>
+/* UK Furniture Guide — hand-written stylesheet, no frameworks.
+   Palette: deep teal (#0E7C7B) + vibrant coral (#FF6B35) on warm off-white.
+   Mobile-first, responsive. Brand name appears only in HTML. */
+
+:root {
+  --teal: #0E7C7B;
+  --teal-dark: #095C5B;
+  --teal-ink: #073f3e;
+  --coral: #FF6B35;
+  --coral-dark: #D94F1E;
+  --gold: #E8A33D;
+  --navy: #1F2A44;
+  --navy-dark: #141C30;
+  --bg: #FDFBF7;
+  --card: #FFFFFF;
+  --ink: #2B2F36;
+  --muted: #5F6570;
+  --line: #E9E2D4;
+  --radius: 14px;
+  --max: 1080px;
+  --shadow: 0 3px 14px rgba(14, 124, 123, 0.10);
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  font-family: "Segoe UI", system-ui, -apple-system, Roboto, "Helvetica Neue", Arial, sans-serif;
+  color: var(--ink);
+  background: var(--bg);
+  line-height: 1.65;
+  font-size: 17px;
+}
+img { max-width: 100%; }
+a { color: var(--teal); }
+a:hover { color: var(--teal-dark); }
+
+/* ---------- layout ---------- */
+.wrap { max-width: var(--max); margin: 0 auto; padding: 0 20px; }
+section { padding: 52px 0; }
+section.tight { padding: 30px 0; }
+
+/* ---------- header / nav ---------- */
+.site-header {
+  background: var(--navy);
+  color: #fff;
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  box-shadow: 0 2px 10px rgba(0,0,0,.22);
+  border-bottom: 3px solid var(--coral);
+}
+.header-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 20px;
+  max-width: var(--max);
+  margin: 0 auto;
+}
+.brand { display: flex; align-items: center; gap: 10px; text-decoration: none; color: #fff; }
+.brand-mark {
+  width: 40px; height: 40px; border-radius: 12px;
+  background: linear-gradient(135deg, var(--coral), var(--coral-dark));
+  display: flex; align-items: center; justify-content: center;
+  font-weight: 800; font-size: 22px; color: #fff;
+  box-shadow: 0 2px 8px rgba(255,107,53,.45);
+}
+.brand-name { font-size: 20px; font-weight: 800; letter-spacing: .2px; }
+.brand-name small { display: block; font-size: 11px; font-weight: 400; color: #FFD9C4; letter-spacing: .8px; }
+.nav-toggle {
+  display: none;
+  background: none; border: 2px solid var(--coral); color: #fff;
+  border-radius: 8px; font-size: 20px; padding: 4px 12px; cursor: pointer;
+}
+.main-nav ul { display: flex; gap: 4px; list-style: none; margin: 0; padding: 0; }
+.main-nav a {
+  color: #EDEFF5; text-decoration: none; font-size: 15px; font-weight: 600;
+  padding: 8px 12px; border-radius: 8px;
+}
+.main-nav a:hover, .main-nav a.active { background: rgba(255,107,53,.18); color: #fff; }
+.main-nav a.active { box-shadow: inset 0 -3px 0 var(--coral); border-radius: 8px 8px 0 0; }
+
+/* ---------- hero ---------- */
+.hero {
+  background:
+    radial-gradient(1100px 340px at 85% -10%, rgba(255,107,53,.28), transparent 60%),
+    linear-gradient(120deg, var(--navy) 0%, #274b5e 55%, var(--teal-dark) 115%);
+  color: #fff;
+  padding: 78px 0 68px;
+}
+.hero h1 { font-size: 2.5rem; margin: 0 0 12px; line-height: 1.18; }
+.hero h1 .pop { color: var(--coral); }
+.hero p.lead { font-size: 1.15rem; color: #E4EAF3; max-width: 660px; }
+.hero-cta { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 26px; }
+
+/* ---------- buttons ---------- */
+.btn {
+  display: inline-block;
+  padding: 13px 24px;
+  border-radius: 12px;
+  font-weight: 800;
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  transition: transform .08s ease, background .15s ease, box-shadow .15s ease;
+}
+.btn:active { transform: scale(.97); }
+.btn-primary {
+  background: linear-gradient(135deg, var(--coral), var(--coral-dark));
+  color: #fff;
+  box-shadow: 0 4px 14px rgba(255,107,53,.35);
+}
+.btn-primary:hover { background: var(--coral-dark); color: #fff; box-shadow: 0 6px 18px rgba(255,107,53,.5); }
+.btn-secondary { background: var(--teal); color: #fff; box-shadow: 0 4px 14px rgba(14,124,123,.3); }
+.btn-secondary:hover { background: var(--teal-dark); color: #fff; }
+.btn-ghost { background: transparent; color: #fff; border: 2px solid #fff; }
+.btn-ghost:hover { border-color: var(--coral); color: var(--coral); }
+.btn-outline { background: #fff; color: var(--teal-dark); border: 2px solid var(--teal); }
+.btn-outline:hover { background: var(--teal); border-color: var(--teal); color: #fff; }
+
+/* ---------- cards / grids ---------- */
+.grid { display: grid; gap: 22px; }
+.grid-3 { grid-template-columns: repeat(3, 1fr); }
+.grid-2 { grid-template-columns: repeat(2, 1fr); }
+.card {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 26px;
+  display: flex;
+  flex-direction: column;
+  transition: transform .12s ease, box-shadow .12s ease;
+}
+.card:hover { transform: translateY(-3px); box-shadow: 0 8px 22px rgba(14,124,123,.14); }
+.card h3 { margin: 0 0 8px; font-size: 1.2rem; }
+.card h3 a { color: var(--navy); text-decoration: none; }
+.card h3 a:hover { color: var(--coral-dark); }
+.card p { color: var(--muted); font-size: 15px; flex: 1; }
+.card .card-link { font-weight: 700; margin-top: 10px; color: var(--coral-dark); }
+
+/* product card (listicles) */
+.product-card {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-top: 4px solid var(--teal);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 28px;
+  margin-bottom: 30px;
+  position: relative;
+}
+.product-card .rank {
+  position: absolute; top: -15px; left: 24px;
+  background: var(--teal); color: #fff;
+  font-weight: 800; font-size: 14px;
+  padding: 5px 16px; border-radius: 20px;
+  box-shadow: 0 3px 8px rgba(14,124,123,.35);
+}
+.product-card .rank.top {
+  background: linear-gradient(135deg, var(--coral), var(--coral-dark));
+  color: #fff;
+  box-shadow: 0 3px 10px rgba(255,107,53,.45);
+}
+.product-card h2 { margin: 8px 0 4px; font-size: 1.45rem; color: var(--navy); }
+.stars { color: var(--gold); font-size: 19px; letter-spacing: 2px; text-shadow: 0 1px 0 rgba(0,0,0,.06); }
+.price { font-size: 1.35rem; font-weight: 800; color: var(--teal-dark); margin: 8px 0; }
+.specs { width: 100%; border-collapse: collapse; margin: 12px 0; font-size: 15px; }
+.specs th, .specs td { text-align: left; padding: 7px 10px; border-bottom: 1px solid var(--line); }
+.specs th { width: 38%; color: var(--muted); font-weight: 600; }
+.pros-cons { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 14px 0; }
+.pros-cons h4 { margin: 0 0 6px; font-size: 15px; }
+.pros ul, .cons ul { margin: 0; padding-left: 20px; font-size: 15px; }
+.pros h4 { color: var(--teal-dark); }
+.cons h4 { color: #B23A3A; }
+.cta-row { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 16px; }
+
+/* image placeholder block */
+.img-placeholder {
+  background: linear-gradient(135deg, #E7F3F1, #FDEBDD);
+  border: 2px dashed #9CC5C2;
+  border-radius: var(--radius);
+  min-height: 190px;
+  display: flex; align-items: center; justify-content: center;
+  color: #5E7B79; font-weight: 700; text-align: center;
+  padding: 20px; margin-bottom: 16px; font-size: 15px;
+}
+
+/* quotable fact block (AEO/GEO) */
+.fact-box {
+  background: linear-gradient(135deg, #E6F5F3, #FFF3E8);
+  border: 1px solid var(--line);
+  border-left: 6px solid var(--coral);
+  border-radius: 0 var(--radius) var(--radius) 0;
+  padding: 20px 24px;
+  margin: 26px 0;
+}
+.fact-box h3, .fact-box h4 { margin: 0 0 8px; color: var(--navy); }
+.fact-box p, .fact-box li { margin: 6px 0; }
+.fact-box ul { margin: 8px 0; padding-left: 20px; }
+.in-short {
+  background: #fff;
+  border: 2px solid var(--teal);
+  border-radius: var(--radius);
+  padding: 20px 24px;
+  margin: 22px 0 28px;
+  box-shadow: var(--shadow);
+}
+.in-short strong { color: var(--teal-dark); }
+
+/* ---------- tool ---------- */
+.tool-box {
+  background: var(--card); border: 1px solid var(--line);
+  border-top: 4px solid var(--coral);
+  border-radius: var(--radius); box-shadow: var(--shadow);
+  padding: 32px; max-width: 720px; margin: 0 auto;
+}
+.tool-box label { display: block; font-weight: 700; margin: 16px 0 6px; color: var(--navy); }
+.tool-box input[type="number"], .tool-box select {
+  width: 100%; padding: 12px; font-size: 16px;
+  border: 2px solid var(--line); border-radius: 10px; background: #fff;
+}
+.tool-box input:focus, .tool-box select:focus { border-color: var(--teal); outline: none; box-shadow: 0 0 0 3px rgba(14,124,123,.15); }
+.unit-toggle { display: flex; gap: 8px; margin-top: 6px; }
+.unit-toggle button {
+  flex: 1; padding: 10px; border: 2px solid var(--line); background: #fff;
+  border-radius: 10px; font-weight: 700; cursor: pointer; font-size: 15px; color: var(--muted);
+}
+.unit-toggle button.active { border-color: var(--teal); background: #E2F3F1; color: var(--teal-dark); }
+.tool-result {
+  display: none; margin-top: 24px; padding: 26px;
+  background: linear-gradient(135deg, #E6F5F3, #FFF6EC);
+  border: 2px solid var(--teal); border-radius: var(--radius);
+}
+.tool-result.show { display: block; }
+.tool-result h3 { margin-top: 0; color: var(--teal-dark); }
+
+/* ---------- faq ---------- */
+.faq details {
+  background: var(--card); border: 1px solid var(--line);
+  border-radius: 12px; margin-bottom: 12px; padding: 4px 20px;
+}
+.faq details[open] { border-color: var(--teal); }
+.faq summary { cursor: pointer; font-weight: 700; padding: 14px 0; color: var(--navy); font-size: 17px; }
+.faq summary::-webkit-details-marker { color: var(--coral); }
+.faq summary::marker { color: var(--coral); }
+.faq p { margin-top: 0; color: var(--muted); }
+
+/* ---------- trust / misc ---------- */
+.trust-band { background: linear-gradient(135deg, var(--navy) 0%, #274b5e 70%, var(--teal-dark) 130%); color: #E9EDF5; }
+.trust-band h2 { color: #fff; }
+.check-list { list-style: none; padding: 0; }
+.check-list li { padding: 8px 0 8px 36px; position: relative; }
+.check-list li::before {
+  content: "✓"; position: absolute; left: 0; top: 6px;
+  background: var(--coral); color: #fff; font-weight: 800; font-size: 15px;
+  width: 24px; height: 24px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+}
+.notice {
+  background: #FFF6E9; border-left: 6px solid var(--coral);
+  padding: 16px 20px; border-radius: 0 12px 12px 0; margin: 24px 0; font-size: 15px;
+}
+table.compare { width: 100%; border-collapse: collapse; background: #fff; font-size: 15px; margin: 18px 0; box-shadow: var(--shadow); border-radius: 8px; overflow: hidden; }
+table.compare th, table.compare td { border: 1px solid var(--line); padding: 10px 12px; text-align: left; }
+table.compare th { background: var(--teal); color: #fff; }
+table.compare tr:nth-child(even) td { background: #F7FBFA; }
+.breadcrumb { font-size: 14px; color: var(--muted); margin: 18px 0 0; }
+.breadcrumb a { color: var(--teal); text-decoration: none; }
+h2.section-title { color: var(--navy); font-size: 1.7rem; margin-bottom: 6px; }
+h2.section-title::after {
+  content: ""; display: block; width: 58px; height: 4px;
+  background: linear-gradient(90deg, var(--coral), var(--gold));
+  border-radius: 3px; margin-top: 10px;
+}
+.trust-band h2.section-title::after { background: linear-gradient(90deg, var(--coral), var(--gold)); }
+p.section-sub { color: var(--muted); margin-top: 0; }
+h2.q { color: var(--navy); font-size: 1.45rem; margin-top: 38px; }
+
+/* newsletter */
+.newsletter {
+  background: #fff; border: 1px solid var(--line); border-top: 4px solid var(--coral);
+  border-radius: var(--radius); padding: 34px; text-align: center; box-shadow: var(--shadow);
+}
+.newsletter form { display: flex; gap: 10px; max-width: 480px; margin: 18px auto 0; }
+.newsletter input[type="email"] { flex: 1; padding: 12px; font-size: 16px; border: 2px solid var(--line); border-radius: 10px; }
+.newsletter input[type="email"]:focus { border-color: var(--teal); outline: none; }
+
+/* forms */
+.form-row { margin-bottom: 16px; }
+.form-row label { display: block; font-weight: 700; margin-bottom: 6px; color: var(--navy); }
+.form-row input, .form-row textarea, .form-row select {
+  width: 100%; padding: 12px; font-size: 16px; border: 2px solid var(--line); border-radius: 10px; font-family: inherit; background: #fff;
+}
+.form-row input:focus, .form-row textarea:focus { border-color: var(--teal); outline: none; }
+.form-row textarea { min-height: 140px; resize: vertical; }
+
+/* ---------- footer ---------- */
+.site-footer { background: var(--navy-dark); color: #B9C2D6; padding: 52px 0 24px; margin-top: 44px; border-top: 4px solid var(--coral); }
+.footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 28px; }
+.site-footer h4 { color: #fff; margin-top: 0; font-size: 16px; }
+.site-footer a { color: #B9C2D6; text-decoration: none; font-size: 15px; }
+.site-footer a:hover { color: var(--coral); }
+.site-footer ul { list-style: none; padding: 0; margin: 0; }
+.site-footer li { margin-bottom: 8px; }
+.footer-bottom { border-top: 1px solid #2C3A58; margin-top: 32px; padding-top: 20px; font-size: 13px; text-align: center; }
+.disclosure-strip { background: #FFF3E8; color: #7A5A3A; font-size: 13.5px; padding: 13px 0; text-align: center; border-top: 1px solid #F0DCC2; }
+.disclosure-strip a { color: var(--coral-dark); font-weight: 700; }
+
+
+/* ---------- colorful product cards ---------- */
+.prod-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 22px; }
+.prod-card {
+  position: relative; overflow: hidden;
+  background: linear-gradient(165deg, #ffffff 0%, #eefaf8 60%, #fff6ec 100%);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 26px 20px 20px;
+  transition: transform .12s ease, box-shadow .12s ease;
+}
+.prod-card::before {
+  content: ""; position: absolute; top: 0; left: 0; right: 0; height: 6px;
+  background: linear-gradient(90deg, var(--teal), var(--coral), var(--gold));
+}
+.prod-card:hover { transform: translateY(-4px); box-shadow: 0 10px 26px rgba(14,124,123,.18); }
+.rank-badge {
+  position: absolute; top: 12px; right: 14px;
+  width: 36px; height: 36px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-weight: 800; font-size: 17px; color: #fff;
+  box-shadow: 0 3px 8px rgba(0,0,0,.22);
+}
+.rank-1 { background: linear-gradient(135deg, #E8A33D, #c07f16); }
+.rank-2 { background: linear-gradient(135deg, #0E7C7B, #075e5d); }
+.rank-3 { background: linear-gradient(135deg, #FF6B35, #cf4c1c); }
+.prod-card h4 { margin: 6px 44px 6px 0; color: var(--navy); font-size: 1.08rem; line-height: 1.35; }
+.prod-price { font-size: 1.7rem; font-weight: 800; color: var(--coral-dark); margin: 8px 0 2px; }
+.price-badge {
+  display: inline-block; background: linear-gradient(135deg, var(--coral), var(--coral-dark));
+  color: #fff; font-weight: 800; font-size: 1.2rem;
+  padding: 5px 16px; border-radius: 22px; box-shadow: 0 3px 10px rgba(255,107,53,.45);
+  margin: 6px 0;
+}
+.spec-chips { display: flex; flex-wrap: wrap; gap: 7px; margin: 12px 0; }
+.chip { font-size: 13px; font-weight: 700; padding: 5px 11px; border-radius: 15px; white-space: nowrap; }
+.chip-teal { background: #d9efed; color: #075e5d; }
+.chip-coral { background: #ffe3d3; color: #b84315; }
+.chip-gold { background: #fbeecd; color: #8a5c10; }
+.prod-cta { margin-top: 12px; }
+.rec-card {
+  position: relative; overflow: hidden;
+  background: linear-gradient(150deg, #e4f5f3 0%, #ffffff 55%, #ffefe2 100%);
+  border: 2px solid var(--teal);
+  border-radius: var(--radius);
+  padding: 26px; margin-top: 22px;
+  box-shadow: 0 6px 20px rgba(14,124,123,.14);
+}
+.rec-card::before {
+  content: ""; position: absolute; top: 0; left: 0; right: 0; height: 6px;
+  background: linear-gradient(90deg, var(--teal), var(--coral), var(--gold));
+}
+.rec-card h3 { margin-top: 0; color: var(--teal-dark); }
+@media (max-width: 860px) { .prod-grid { grid-template-columns: 1fr; } }
+
+/* ---------- responsive ---------- */
+@media (max-width: 860px) {
+  .grid-3 { grid-template-columns: 1fr; }
+  .grid-2 { grid-template-columns: 1fr; }
+  .footer-grid { grid-template-columns: 1fr 1fr; }
+  .hero h1 { font-size: 1.95rem; }
+  .pros-cons { grid-template-columns: 1fr; }
+}
+@media (max-width: 640px) {
+  .nav-toggle { display: block; }
+  .main-nav { display: none; width: 100%; }
+  .main-nav.open { display: block; }
+  .main-nav ul { flex-direction: column; padding: 10px 0 16px; }
+  .header-inner { flex-wrap: wrap; }
+  .newsletter form { flex-direction: column; }
+  .footer-grid { grid-template-columns: 1fr; }
+  section { padding: 36px 0; }
+}
+
+
+/* Sticky visible category nav (no hamburger) */
+.site-header{position:fixed !important;top:0;left:0;right:0;z-index:200;box-shadow:0 2px 12px rgba(0,0,0,.12);}
+.nav-toggle{display:none !important;}
+.main-nav{display:block !important;width:100%;}
+.main-nav ul{display:flex !important;flex-direction:row !important;overflow-x:auto;white-space:nowrap;
+  padding:6px 0 10px;margin:0;gap:2px;scrollbar-width:none;-webkit-overflow-scrolling:touch;}
+.main-nav ul::-webkit-scrollbar{display:none;}
+.main-nav li{flex:0 0 auto;}
+.main-nav a{white-space:nowrap;font-size:14px;padding:8px 12px;}
+.header-inner{flex-wrap:wrap;}
+
+
+/* Bulletproof sticky header + smooth category slider */
+.site-header{position:fixed !important;top:0;left:0;right:0;z-index:200;box-shadow:0 2px 12px rgba(0,0,0,.12);}
+.main-nav ul{touch-action:pan-x;scroll-snap-type:x proximity;}
+.main-nav li{scroll-snap-align:start;}
+.main-nav a{font-size:13px;padding:8px 10px;}
+
+
+.container{max-width:1100px;margin:0 auto;padding:0 18px;}
+.cod-badge{display:inline-block;background:#1a9e4b;color:#fff;font-size:12px;font-weight:700;padding:4px 10px;border-radius:20px;}
+
+/* Mobile alignment fix (2026-10-05): pad sections lacking an inner .wrap; stop any horizontal overflow */
+html, body { overflow-x: clip; }
+main > section { padding-left: 20px; padding-right: 20px; }
+main > section > .wrap { padding-left: 0; padding-right: 0; }
+h1, h2, h3 { overflow-wrap: break-word; }
+</style>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "UK Furniture Guide",
+    "url": "https://ukfurnitureguide.co.uk/",
+    "slogan": "Honest UK furniture buying guides",
+    "email": "info@ukfurnitureonline.co.uk"
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "UK Furniture Guide",
+    "url": "https://ukfurnitureguide.co.uk/",
+    "description": "Honest UK furniture buying guides: sofas, beds, dining sets and mattresses, with real £ prices."
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://ukfurnitureguide.co.uk/index.html"},
+      {"@type": "ListItem", "position": 2, "name": "Measurement Converter", "item": "https://ukfurnitureguide.co.uk/tools/measurement-converter.html"}
+    ]
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {"@type": "Question", "name": "How do I convert cm to inches?", "acceptedAnswer": {"@type": "Answer", "text": "Divide centimetres by 2.54. So a 190 cm bed length is 190 \u00f7 2.54 = 74.8 inches. To go the other way, multiply inches by 2.54."}},
+      {"@type": "Question", "name": "Why does UK furniture use both cm and feet/inches?", "acceptedAnswer": {"@type": "Answer", "text": "The UK went metric for manufacturing but imperial sizes stuck around in everyday speech. Retailers list metric dimensions (often with the traditional imperial name like \u201c4\u20326\u2033 double\u201d) so shoppers from both habits can compare."}},
+      {"@type": "Question", "name": "What is the standard UK double bed size?", "acceptedAnswer": {"@type": "Answer", "text": "A UK double bed (and the mattress to fit it) is 135 \u00d7 190 cm, traditionally called 4\u20326\u2033 \u00d7 6\u20323\u2033. Always check the retailer\u2019s exact centimetre dimensions before ordering bedding."}}
+    ]
+  }
+  </script>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-GM5ZW8NTWK"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-GM5ZW8NTWK');
+</script>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="header-inner">
+    <a class="brand" href="../index.html" aria-label="UK Furniture Guide home">
+      <span class="brand-mark">UK</span>
+      <span class="brand-name">UK Furniture Guide<small>HONEST UK FURNITURE BUYING GUIDES</small></span>
+    </a>
+    <button class="nav-toggle" aria-expanded="false" aria-label="Toggle navigation">☰</button>
+    <nav class="main-nav" aria-label="Main navigation">
+      <ul>
+        <li><a href="../index.html">Home</a></li>
+        <li><a href="../guides/best-sofas-uk.html">Sofas</a></li>
+        <li><a href="../guides/best-beds-uk.html">Beds</a></li>
+        <li><a href="../guides/best-dining-sets-uk.html">Dining Sets</a></li>
+        <li><a href="../guides/best-mattresses-uk.html">Mattresses</a></li>
+        <li><a href="sofa-size-finder.html">Sofa Size Finder</a></li><li><a href="bed-size-finder.html">Bed Size Finder</a></li><li><a href="dining-size-finder.html">Dining Size Finder</a></li>
+        <li><a href="mattress-finder.html">Mattress Finder</a></li><li><a href="dining-seats-calculator.html">Seats Calculator</a></li><li><a href="measurement-converter.html" class="active">Measure Converter</a></li>
+        <li><a href="../about.html">About</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main>
+<div class="wrap">
+  <p class="breadcrumb"><a href="../index.html">Home</a> › Measurement Converter</p>
+
+  <h1>Furniture Measurement Converter</h1>
+  <p class="section-sub">Free tool · No signup · Instant. Convert centimetres, inches and feet+inches as you type — plus a quick reference of standard UK furniture sizes.</p>
+
+  <div class="in-short"><strong>In short:</strong> UK furniture mixes metric and imperial — a "4'6" bed is 135 cm wide. Type any measurement below and get every format instantly.</div>
+
+  <div class="tool-box">
+    <label for="convVal">Measurement</label>
+    <input type="number" id="convVal" min="0" step="any" placeholder="e.g. 190">
+
+    <div class="grid grid-2" style="margin-top:14px">
+      <div>
+        <label for="convFrom">From</label>
+        <select id="convFrom">
+          <option value="cm">Centimetres (cm)</option>
+          <option value="in">Inches (")</option>
+          <option value="ft">Feet (')</option>
+        </select>
+      </div>
+      <div>
+        <label for="convTo">To</label>
+        <select id="convTo">
+          <option value="in">Inches (")</option>
+          <option value="cm">Centimetres (cm)</option>
+          <option value="ftin">Feet + inches (' ")</option>
+          <option value="ft">Feet (')</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="tool-result" id="result" role="status" aria-live="polite"></div>
+  </div>
+
+  <section class="tight">
+    <div class="wrap" style="padding:0">
+      <h2 class="section-title">Standard UK furniture sizes</h2>
+      <p class="section-sub">The sizes UK retailers actually use — centimetres are exact, imperial is the commonly quoted equivalent.</p>
+      <table class="compare">
+        <tr><th>Item</th><th>Centimetres</th><th>Feet / inches (approx)</th></tr>
+        <tr><td>Single bed</td><td>90 &times; 190 cm</td><td>3'0" &times; 6'3"</td></tr>
+        <tr><td>Double bed</td><td>135 &times; 190 cm</td><td>4'6" &times; 6'3"</td></tr>
+        <tr><td>King size bed</td><td>150 &times; 200 cm</td><td>5'0" &times; 6'6"</td></tr>
+        <tr><td>Super king bed</td><td>180 &times; 200 cm</td><td>6'0" &times; 6'6"</td></tr>
+        <tr><td>Standard UK internal doorway</td><td>76 cm</td><td>2'6"</td></tr>
+        <tr><td>Typical 2-seater sofa width</td><td>150&ndash;170 cm</td><td>4'11"&ndash;5'7"</td></tr>
+        <tr><td>Typical 3-seater sofa width</td><td>190&ndash;220 cm</td><td>6'3"&ndash;7'3"</td></tr>
+        <tr><td>Dining chair seat height</td><td>45 cm</td><td>1'6"</td></tr>
+      </table>
+
+      <h2 class="section-title">Tool FAQs</h2>
+      <div class="faq">
+        <details><summary>How do I convert cm to inches?</summary><p>Divide centimetres by 2.54. So a 190 cm bed length is 190 &divide; 2.54 = 74.8 inches. To go the other way, multiply inches by 2.54.</p></details>
+        <details><summary>Why does UK furniture use both cm and feet/inches?</summary><p>The UK went metric for manufacturing but imperial sizes stuck around in everyday speech. Retailers list metric dimensions (often with the traditional imperial name like "4'6" double") so shoppers from both habits can compare.</p></details>
+        <details><summary>What is the standard UK double bed size?</summary><p>A UK double bed (and the mattress to fit it) is 135 &times; 190 cm, traditionally called 4'6" &times; 6'3". Always check the retailer's exact centimetre dimensions before ordering bedding.</p></details>
+      </div>
+
+      <p style="margin-top:28px">Measuring up for something specific? Try our <a href="sofa-size-finder.html">Sofa Size Finder</a>, <a href="bed-size-finder.html">Bed Size Finder</a> or <a href="dining-size-finder.html">Dining Size Finder</a>.</p>
+    </div>
+  </section>
+</div>
+
+<div class="disclosure-strip">
+  <div class="wrap">UK Furniture Guide may earn a commission on purchases made through links on this site — <a href="../affiliate-disclosure.html">learn more</a>.</div>
+</div>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div>
+        <h4>UK Furniture Guide</h4>
+        <p style="font-size:14px">Honest UK furniture buying guides. Independent research, real £ prices, practical tools.</p>
+      </div>
+      <div>
+        <h4>Guides</h4>
+        <ul>
+          <li><a href="../guides/best-sofas-uk.html">Best Sofas 2026</a></li>
+          <li><a href="../guides/best-beds-uk.html">Best Beds 2026</a></li>
+          <li><a href="../guides/best-dining-sets-uk.html">Best Dining Sets 2026</a></li>
+          <li><a href="../guides/best-mattresses-uk.html">Best Mattresses 2026</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Learn</h4>
+        <ul>
+          <li><a href="../guides/sofa-buying-guide.html">Sofa Buying Guide</a></li>
+          <li><a href="../guides/bed-buying-guide.html">Bed Buying Guide</a></li>
+          <li><a href="../guides/sofa-buying-guide.html">Sofa Buying Guide</a></li>
+          <li><a href="../guides/bed-buying-guide.html">Bed Buying Guide</a></li>
+          <li><a href="../guides/sofa-buying-guide.html">Sofa Buying Guide</a></li>
+          <li><a href="../guides/bed-buying-guide.html">Bed Buying Guide</a></li>
+          <li><a href="sofa-size-finder.html">Sofa Size Finder</a></li><li><a href="bed-size-finder.html">Bed Size Finder</a></li><li><a href="dining-size-finder.html">Dining Size Finder</a></li>
+          <li><a href="mattress-finder.html">Mattress Finder</a></li><li><a href="dining-seats-calculator.html">Dining Seats Calculator</a></li><li><a href="measurement-converter.html">Measurement Converter</a></li>
+          <li><a href="mattress-finder.html">Mattress Finder</a></li><li><a href="dining-seats-calculator.html">Dining Seats Calculator</a></li><li><a href="measurement-converter.html">Measurement Converter</a></li>
+          <li><a href="../about.html">About Us</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Legal</h4>
+        <ul>
+          <li><a href="../affiliate-disclosure.html">Affiliate Disclosure</a></li>
+          <li><a href="../privacy-policy.html">Privacy Policy</a></li>
+          <li><a href="../contact.html">Contact</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">© <span data-year>2026</span> UK Furniture Guide. All rights reserved.</div>
+  </div>
+</footer>
+
+<script>
+/* Furniture Measurement Converter — live two-way conversion */
+(function () {
+  var valEl = document.getElementById("convVal");
+  var fromEl = document.getElementById("convFrom");
+  var toEl = document.getElementById("convTo");
+  var result = document.getElementById("result");
+
+  function toCm(v, unit) {
+    if (unit === "cm") return v;
+    if (unit === "in") return v * 2.54;
+    return v * 30.48;
+  }
+  function fromCm(cm, unit) {
+    if (unit === "cm") return cm.toFixed(1) + " cm";
+    if (unit === "in") return (cm / 2.54).toFixed(1) + "\u2033";
+    if (unit === "ft") return (cm / 30.48).toFixed(2) + "\u2032";
+    var totalIn = cm / 2.54;
+    var ft = Math.floor(totalIn / 12);
+    var inch = (totalIn - ft * 12).toFixed(1);
+    return ft + "\u2032 " + inch + "\u2033";
+  }
+  function unitName(u) {
+    return u === "cm" ? "centimetres" : u === "in" ? "inches" : "feet";
+  }
+
+  function convert() {
+    var v = parseFloat(valEl.value);
+    if (!v || v < 0) {
+      result.classList.remove("show");
+      return;
+    }
+    var cm = toCm(v, fromEl.value);
+    var out = fromCm(cm, toEl.value);
+    result.innerHTML =
+      '<div class="rec-card" style="margin-top:0"><h3 style="font-size:1.6rem">' +
+      v + " " + unitName(fromEl.value) + " = <span style='color:var(--coral-dark)'>" + out + "</span></h3>" +
+      "<p style='margin-bottom:0;font-size:14px;color:var(--muted)'>That's " + cm.toFixed(1) + " cm &middot; " +
+      (cm / 2.54).toFixed(1) + "\u2033 &middot; " + (cm / 30.48).toFixed(2) + "\u2032 all at once.</p></div>";
+    result.classList.add("show");
+  }
+
+  valEl.addEventListener("input", convert);
+  fromEl.addEventListener("change", convert);
+  toEl.addEventListener("change", convert);
+})();
+</script>
+<script>
+(function(){function pad(){var h=document.querySelector('.site-header');if(h){document.body.style.paddingTop=h.offsetHeight+'px';}}
+document.addEventListener('DOMContentLoaded',pad);window.addEventListener('load',pad);window.addEventListener('resize',pad);})();
+</script>
+
+</body>
+</html>
