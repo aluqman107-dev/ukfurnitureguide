@@ -778,11 +778,11 @@ h1, h2, h3 { overflow-wrap: break-word; }
 
     if (r.fits && r.turnOK && r.hallOK) {
       var head = r.tight ? "Yes — but only just" : "Yes, it fits";
-      out += "<h3>" + (r.tight ? "&#9888;&#65038; " : "&#10003; ") + head + "</h3>";
+      out += "<h3>" + head + "</h3>";
       out += "<p>Your " + fmtCm(r.longest) + "-long item passes through a " + fmtCm(r.dw) + " &times; " + fmtCm(r.dh) + " doorway with its length going through first — " + fmtCm(r.across) + " across the doorway and " + fmtCm(r.upright) + " upright, leaving about " + Math.round(r.slack) + " cm to spare.</p>";
       if (r.tight) out += "<p><strong>Measure twice:</strong> with under 5 cm to spare, take the door off its hinges on the day and check for radiators, handles and light fittings on the route.</p>";
     } else {
-      out += "<h3>&#10007; It won't fit through that doorway</h3>";
+      out += "<h3>It won't fit through that doorway</h3>";
       if (!r.fits) {
         out += "<p>The item's two smallest sides are " + fmtCm(r.across) + " &times; " + fmtCm(r.upright) + ", but your doorway is only " + fmtCm(r.dw) + " wide — the " + fmtCm(r.across) + " side is the blocker (we allow 1 cm of clearance).</p>";
       } else if (!r.hallOK) {
