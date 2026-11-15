@@ -1,0 +1,823 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="canonical" href="https://ukfurnitureguide.co.uk/tools/furniture-delivery-checker.html">
+  <title>Will It Fit Through My Door? Free Furniture Delivery Checker (UK) | UK Furniture Guide</title>
+  <meta name="description" content="Free UK furniture delivery checker: enter your sofa, bed or table size and your narrowest doorway to find out instantly whether it will fit through — and what to take off if it won't.">
+  <meta property="og:title" content="Furniture Delivery Checker — Will It Fit Through My Door? | UK Furniture Guide">
+  <meta property="og:description" content="Enter your furniture size and narrowest doorway — get an instant yes or no before you order. Free tool, no signup.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="/images/og-banner.jpg">
+  <style>
+/* UK Furniture Guide — hand-written stylesheet, no frameworks.
+   Palette: deep teal (#0E7C7B) + vibrant coral (#FF6B35) on warm off-white.
+   Mobile-first, responsive. Brand name appears only in HTML. */
+
+:root {
+  --teal: #0E7C7B;
+  --teal-dark: #095C5B;
+  --teal-ink: #073f3e;
+  --coral: #FF6B35;
+  --coral-dark: #D94F1E;
+  --gold: #E8A33D;
+  --navy: #1F2A44;
+  --navy-dark: #141C30;
+  --bg: #FDFBF7;
+  --card: #FFFFFF;
+  --ink: #2B2F36;
+  --muted: #5F6570;
+  --line: #E9E2D4;
+  --radius: 14px;
+  --max: 1080px;
+  --shadow: 0 3px 14px rgba(14, 124, 123, 0.10);
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  font-family: "Segoe UI", system-ui, -apple-system, Roboto, "Helvetica Neue", Arial, sans-serif;
+  color: var(--ink);
+  background: var(--bg);
+  line-height: 1.65;
+  font-size: 17px;
+}
+img { max-width: 100%; }
+a { color: var(--teal); }
+a:hover { color: var(--teal-dark); }
+
+/* ---------- layout ---------- */
+.wrap { max-width: var(--max); margin: 0 auto; padding: 0 20px; }
+section { padding: 52px 0; }
+section.tight { padding: 30px 0; }
+
+/* ---------- header / nav ---------- */
+.site-header {
+  background: var(--navy);
+  color: #fff;
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  box-shadow: 0 2px 10px rgba(0,0,0,.22);
+  border-bottom: 3px solid var(--coral);
+}
+.header-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 20px;
+  max-width: var(--max);
+  margin: 0 auto;
+}
+.brand { display: flex; align-items: center; gap: 10px; text-decoration: none; color: #fff; }
+.brand-mark {
+  width: 40px; height: 40px; border-radius: 12px;
+  background: linear-gradient(135deg, var(--coral), var(--coral-dark));
+  display: flex; align-items: center; justify-content: center;
+  font-weight: 800; font-size: 22px; color: #fff;
+  box-shadow: 0 2px 8px rgba(255,107,53,.45);
+}
+.brand-name { font-size: 20px; font-weight: 800; letter-spacing: .2px; }
+.brand-name small { display: block; font-size: 11px; font-weight: 400; color: #FFD9C4; letter-spacing: .8px; }
+.nav-toggle {
+  display: none;
+  background: none; border: 2px solid var(--coral); color: #fff;
+  border-radius: 8px; font-size: 20px; padding: 4px 12px; cursor: pointer;
+}
+.main-nav ul { display: flex; gap: 4px; list-style: none; margin: 0; padding: 0; }
+.main-nav a {
+  color: #EDEFF5; text-decoration: none; font-size: 15px; font-weight: 600;
+  padding: 8px 12px; border-radius: 8px;
+}
+.main-nav a:hover, .main-nav a.active { background: rgba(255,107,53,.18); color: #fff; }
+.main-nav a.active { box-shadow: inset 0 -3px 0 var(--coral); border-radius: 8px 8px 0 0; }
+
+/* ---------- hero ---------- */
+.hero {
+  background:
+    radial-gradient(1100px 340px at 85% -10%, rgba(255,107,53,.28), transparent 60%),
+    linear-gradient(120deg, var(--navy) 0%, #274b5e 55%, var(--teal-dark) 115%);
+  color: #fff;
+  padding: 78px 0 68px;
+}
+.hero h1 { font-size: 2.5rem; margin: 0 0 12px; line-height: 1.18; }
+.hero h1 .pop { color: var(--coral); }
+.hero p.lead { font-size: 1.15rem; color: #E4EAF3; max-width: 660px; }
+.hero-cta { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 26px; }
+
+/* ---------- buttons ---------- */
+.btn {
+  display: inline-block;
+  padding: 13px 24px;
+  border-radius: 12px;
+  font-weight: 800;
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  transition: transform .08s ease, background .15s ease, box-shadow .15s ease;
+}
+.btn:active { transform: scale(.97); }
+.btn-primary {
+  background: linear-gradient(135deg, var(--coral), var(--coral-dark));
+  color: #fff;
+  box-shadow: 0 4px 14px rgba(255,107,53,.35);
+}
+.btn-primary:hover { background: var(--coral-dark); color: #fff; box-shadow: 0 6px 18px rgba(255,107,53,.5); }
+.btn-secondary { background: var(--teal); color: #fff; box-shadow: 0 4px 14px rgba(14,124,123,.3); }
+.btn-secondary:hover { background: var(--teal-dark); color: #fff; }
+.btn-ghost { background: transparent; color: #fff; border: 2px solid #fff; }
+.btn-ghost:hover { border-color: var(--coral); color: var(--coral); }
+.btn-outline { background: #fff; color: var(--teal-dark); border: 2px solid var(--teal); }
+.btn-outline:hover { background: var(--teal); border-color: var(--teal); color: #fff; }
+
+/* ---------- cards / grids ---------- */
+.grid { display: grid; gap: 22px; }
+.grid-3 { grid-template-columns: repeat(3, 1fr); }
+.grid-2 { grid-template-columns: repeat(2, 1fr); }
+.card {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 26px;
+  display: flex;
+  flex-direction: column;
+  transition: transform .12s ease, box-shadow .12s ease;
+}
+.card:hover { transform: translateY(-3px); box-shadow: 0 8px 22px rgba(14,124,123,.14); }
+.card h3 { margin: 0 0 8px; font-size: 1.2rem; }
+.card h3 a { color: var(--navy); text-decoration: none; }
+.card h3 a:hover { color: var(--coral-dark); }
+.card p { color: var(--muted); font-size: 15px; flex: 1; }
+.card .card-link { font-weight: 700; margin-top: 10px; color: var(--coral-dark); }
+
+/* product card (listicles) */
+.product-card {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-top: 4px solid var(--teal);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 28px;
+  margin-bottom: 30px;
+  position: relative;
+}
+.product-card .rank {
+  position: absolute; top: -15px; left: 24px;
+  background: var(--teal); color: #fff;
+  font-weight: 800; font-size: 14px;
+  padding: 5px 16px; border-radius: 20px;
+  box-shadow: 0 3px 8px rgba(14,124,123,.35);
+}
+.product-card .rank.top {
+  background: linear-gradient(135deg, var(--coral), var(--coral-dark));
+  color: #fff;
+  box-shadow: 0 3px 10px rgba(255,107,53,.45);
+}
+.product-card h2 { margin: 8px 0 4px; font-size: 1.45rem; color: var(--navy); }
+.stars { color: var(--gold); font-size: 19px; letter-spacing: 2px; text-shadow: 0 1px 0 rgba(0,0,0,.06); }
+.price { font-size: 1.35rem; font-weight: 800; color: var(--teal-dark); margin: 8px 0; }
+.specs { width: 100%; border-collapse: collapse; margin: 12px 0; font-size: 15px; }
+.specs th, .specs td { text-align: left; padding: 7px 10px; border-bottom: 1px solid var(--line); }
+.specs th { width: 38%; color: var(--muted); font-weight: 600; }
+.pros-cons { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 14px 0; }
+.pros-cons h4 { margin: 0 0 6px; font-size: 15px; }
+.pros ul, .cons ul { margin: 0; padding-left: 20px; font-size: 15px; }
+.pros h4 { color: var(--teal-dark); }
+.cons h4 { color: #B23A3A; }
+.cta-row { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 16px; }
+
+/* image placeholder block */
+.img-placeholder {
+  background: linear-gradient(135deg, #E7F3F1, #FDEBDD);
+  border: 2px dashed #9CC5C2;
+  border-radius: var(--radius);
+  min-height: 190px;
+  display: flex; align-items: center; justify-content: center;
+  color: #5E7B79; font-weight: 700; text-align: center;
+  padding: 20px; margin-bottom: 16px; font-size: 15px;
+}
+
+/* quotable fact block (AEO/GEO) */
+.fact-box {
+  background: linear-gradient(135deg, #E6F5F3, #FFF3E8);
+  border: 1px solid var(--line);
+  border-left: 6px solid var(--coral);
+  border-radius: 0 var(--radius) var(--radius) 0;
+  padding: 20px 24px;
+  margin: 26px 0;
+}
+.fact-box h3, .fact-box h4 { margin: 0 0 8px; color: var(--navy); }
+.fact-box p, .fact-box li { margin: 6px 0; }
+.fact-box ul { margin: 8px 0; padding-left: 20px; }
+.in-short {
+  background: #fff;
+  border: 2px solid var(--teal);
+  border-radius: var(--radius);
+  padding: 20px 24px;
+  margin: 22px 0 28px;
+  box-shadow: var(--shadow);
+}
+.in-short strong { color: var(--teal-dark); }
+
+/* ---------- tool ---------- */
+.tool-box {
+  background: var(--card); border: 1px solid var(--line);
+  border-top: 4px solid var(--coral);
+  border-radius: var(--radius); box-shadow: var(--shadow);
+  padding: 32px; max-width: 720px; margin: 0 auto;
+}
+.tool-box label { display: block; font-weight: 700; margin: 16px 0 6px; color: var(--navy); }
+.tool-box input[type="number"], .tool-box select {
+  width: 100%; padding: 12px; font-size: 16px;
+  border: 2px solid var(--line); border-radius: 10px; background: #fff;
+}
+.tool-box input:focus, .tool-box select:focus { border-color: var(--teal); outline: none; box-shadow: 0 0 0 3px rgba(14,124,123,.15); }
+.unit-toggle { display: flex; gap: 8px; margin-top: 6px; }
+.unit-toggle button {
+  flex: 1; padding: 10px; border: 2px solid var(--line); background: #fff;
+  border-radius: 10px; font-weight: 700; cursor: pointer; font-size: 15px; color: var(--muted);
+}
+.unit-toggle button.active { border-color: var(--teal); background: #E2F3F1; color: var(--teal-dark); }
+.tool-result {
+  display: none; margin-top: 24px; padding: 26px;
+  background: linear-gradient(135deg, #E6F5F3, #FFF6EC);
+  border: 2px solid var(--teal); border-radius: var(--radius);
+}
+.tool-result.show { display: block; }
+.tool-result h3 { margin-top: 0; color: var(--teal-dark); }
+
+/* ---------- faq ---------- */
+.faq details {
+  background: var(--card); border: 1px solid var(--line);
+  border-radius: 12px; margin-bottom: 12px; padding: 4px 20px;
+}
+.faq details[open] { border-color: var(--teal); }
+.faq summary { cursor: pointer; font-weight: 700; padding: 14px 0; color: var(--navy); font-size: 17px; }
+.faq summary::-webkit-details-marker { color: var(--coral); }
+.faq summary::marker { color: var(--coral); }
+.faq p { margin-top: 0; color: var(--muted); }
+
+/* ---------- trust / misc ---------- */
+.trust-band { background: linear-gradient(135deg, var(--navy) 0%, #274b5e 70%, var(--teal-dark) 130%); color: #E9EDF5; }
+.trust-band h2 { color: #fff; }
+.check-list { list-style: none; padding: 0; }
+.check-list li { padding: 8px 0 8px 36px; position: relative; }
+.check-list li::before {
+  content: "✓"; position: absolute; left: 0; top: 6px;
+  background: var(--coral); color: #fff; font-weight: 800; font-size: 15px;
+  width: 24px; height: 24px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+}
+.notice {
+  background: #FFF6E9; border-left: 6px solid var(--coral);
+  padding: 16px 20px; border-radius: 0 12px 12px 0; margin: 24px 0; font-size: 15px;
+}
+table.compare { width: 100%; border-collapse: collapse; background: #fff; font-size: 15px; margin: 18px 0; box-shadow: var(--shadow); border-radius: 8px; overflow: hidden; }
+table.compare th, table.compare td { border: 1px solid var(--line); padding: 10px 12px; text-align: left; }
+table.compare th { background: var(--teal); color: #fff; }
+table.compare tr:nth-child(even) td { background: #F7FBFA; }
+.breadcrumb { font-size: 14px; color: var(--muted); margin: 18px 0 0; }
+.breadcrumb a { color: var(--teal); text-decoration: none; }
+h2.section-title { color: var(--navy); font-size: 1.7rem; margin-bottom: 6px; }
+h2.section-title::after {
+  content: ""; display: block; width: 58px; height: 4px;
+  background: linear-gradient(90deg, var(--coral), var(--gold));
+  border-radius: 3px; margin-top: 10px;
+}
+.trust-band h2.section-title::after { background: linear-gradient(90deg, var(--coral), var(--gold)); }
+p.section-sub { color: var(--muted); margin-top: 0; }
+h2.q { color: var(--navy); font-size: 1.45rem; margin-top: 38px; }
+
+/* newsletter */
+.newsletter {
+  background: #fff; border: 1px solid var(--line); border-top: 4px solid var(--coral);
+  border-radius: var(--radius); padding: 34px; text-align: center; box-shadow: var(--shadow);
+}
+.newsletter form { display: flex; gap: 10px; max-width: 480px; margin: 18px auto 0; }
+.newsletter input[type="email"] { flex: 1; padding: 12px; font-size: 16px; border: 2px solid var(--line); border-radius: 10px; }
+.newsletter input[type="email"]:focus { border-color: var(--teal); outline: none; }
+
+/* forms */
+.form-row { margin-bottom: 16px; }
+.form-row label { display: block; font-weight: 700; margin-bottom: 6px; color: var(--navy); }
+.form-row input, .form-row textarea, .form-row select {
+  width: 100%; padding: 12px; font-size: 16px; border: 2px solid var(--line); border-radius: 10px; font-family: inherit; background: #fff;
+}
+.form-row input:focus, .form-row textarea:focus { border-color: var(--teal); outline: none; }
+.form-row textarea { min-height: 140px; resize: vertical; }
+
+/* ---------- footer ---------- */
+.site-footer { background: var(--navy-dark); color: #B9C2D6; padding: 52px 0 24px; margin-top: 44px; border-top: 4px solid var(--coral); }
+.footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 28px; }
+.site-footer h4 { color: #fff; margin-top: 0; font-size: 16px; }
+.site-footer a { color: #B9C2D6; text-decoration: none; font-size: 15px; }
+.site-footer a:hover { color: var(--coral); }
+.site-footer ul { list-style: none; padding: 0; margin: 0; }
+.site-footer li { margin-bottom: 8px; }
+.footer-bottom { border-top: 1px solid #2C3A58; margin-top: 32px; padding-top: 20px; font-size: 13px; text-align: center; }
+.disclosure-strip { background: #FFF3E8; color: #7A5A3A; font-size: 13.5px; padding: 13px 0; text-align: center; border-top: 1px solid #F0DCC2; }
+.disclosure-strip a { color: var(--coral-dark); font-weight: 700; }
+
+
+/* ---------- colorful product cards ---------- */
+.prod-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 22px; }
+.prod-card {
+  position: relative; overflow: hidden;
+  background: linear-gradient(165deg, #ffffff 0%, #eefaf8 60%, #fff6ec 100%);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 26px 20px 20px;
+  transition: transform .12s ease, box-shadow .12s ease;
+}
+.prod-card::before {
+  content: ""; position: absolute; top: 0; left: 0; right: 0; height: 6px;
+  background: linear-gradient(90deg, var(--teal), var(--coral), var(--gold));
+}
+.prod-card:hover { transform: translateY(-4px); box-shadow: 0 10px 26px rgba(14,124,123,.18); }
+.rank-badge {
+  position: absolute; top: 12px; right: 14px;
+  width: 36px; height: 36px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-weight: 800; font-size: 17px; color: #fff;
+  box-shadow: 0 3px 8px rgba(0,0,0,.22);
+}
+.rank-1 { background: linear-gradient(135deg, #E8A33D, #c07f16); }
+.rank-2 { background: linear-gradient(135deg, #0E7C7B, #075e5d); }
+.rank-3 { background: linear-gradient(135deg, #FF6B35, #cf4c1c); }
+.prod-card h4 { margin: 6px 44px 6px 0; color: var(--navy); font-size: 1.08rem; line-height: 1.35; }
+.prod-price { font-size: 1.7rem; font-weight: 800; color: var(--coral-dark); margin: 8px 0 2px; }
+.price-badge {
+  display: inline-block; background: linear-gradient(135deg, var(--coral), var(--coral-dark));
+  color: #fff; font-weight: 800; font-size: 1.2rem;
+  padding: 5px 16px; border-radius: 22px; box-shadow: 0 3px 10px rgba(255,107,53,.45);
+  margin: 6px 0;
+}
+.spec-chips { display: flex; flex-wrap: wrap; gap: 7px; margin: 12px 0; }
+.chip { font-size: 13px; font-weight: 700; padding: 5px 11px; border-radius: 15px; white-space: nowrap; }
+.chip-teal { background: #d9efed; color: #075e5d; }
+.chip-coral { background: #ffe3d3; color: #b84315; }
+.chip-gold { background: #fbeecd; color: #8a5c10; }
+.prod-cta { margin-top: 12px; }
+.rec-card {
+  position: relative; overflow: hidden;
+  background: linear-gradient(150deg, #e4f5f3 0%, #ffffff 55%, #ffefe2 100%);
+  border: 2px solid var(--teal);
+  border-radius: var(--radius);
+  padding: 26px; margin-top: 22px;
+  box-shadow: 0 6px 20px rgba(14,124,123,.14);
+}
+.rec-card::before {
+  content: ""; position: absolute; top: 0; left: 0; right: 0; height: 6px;
+  background: linear-gradient(90deg, var(--teal), var(--coral), var(--gold));
+}
+.rec-card h3 { margin-top: 0; color: var(--teal-dark); }
+@media (max-width: 860px) { .prod-grid { grid-template-columns: 1fr; } }
+
+/* ---------- responsive ---------- */
+@media (max-width: 860px) {
+  .grid-3 { grid-template-columns: 1fr; }
+  .grid-2 { grid-template-columns: 1fr; }
+  .footer-grid { grid-template-columns: 1fr 1fr; }
+  .hero h1 { font-size: 1.95rem; }
+  .pros-cons { grid-template-columns: 1fr; }
+}
+@media (max-width: 640px) {
+  .nav-toggle { display: block; }
+  .main-nav { display: none; width: 100%; }
+  .main-nav.open { display: block; }
+  .main-nav ul { flex-direction: column; padding: 10px 0 16px; }
+  .header-inner { flex-wrap: wrap; }
+  .newsletter form { flex-direction: column; }
+  .footer-grid { grid-template-columns: 1fr; }
+  section { padding: 36px 0; }
+}
+
+
+/* Sticky visible category nav (no hamburger) */
+.site-header{position:sticky !important;top:0;left:0;right:0;z-index:200;box-shadow:0 2px 12px rgba(0,0,0,.12);}
+.nav-toggle{display:none !important;}
+.main-nav{display:block !important;width:100%;}
+.main-nav ul{display:flex !important;flex-direction:row !important;overflow-x:auto;white-space:nowrap;
+  padding:6px 0 10px;margin:0;gap:2px;scrollbar-width:none;-webkit-overflow-scrolling:touch;}
+.main-nav ul::-webkit-scrollbar{display:none;}
+.main-nav li{flex:0 0 auto;}
+.main-nav a{white-space:nowrap;font-size:14px;padding:8px 12px;}
+.header-inner{flex-wrap:wrap;}
+
+
+/* Bulletproof sticky header + smooth category slider */
+.site-header{position:sticky !important;top:0;left:0;right:0;z-index:200;box-shadow:0 2px 12px rgba(0,0,0,.12);}
+.main-nav ul{touch-action:pan-x;scroll-snap-type:x proximity;}
+.main-nav li{scroll-snap-align:start;}
+.main-nav a{font-size:13px;padding:8px 10px;}
+
+
+.container{max-width:1100px;margin:0 auto;padding:0 18px;}
+.cod-badge{display:inline-block;background:#1a9e4b;color:#fff;font-size:12px;font-weight:700;padding:4px 10px;border-radius:20px;}
+
+/* Mobile alignment fix (2026-10-05): pad sections lacking an inner .wrap; stop any horizontal overflow */
+html, body { overflow-x: clip; }
+main > section { padding-left: 20px; padding-right: 20px; }
+main > section > .wrap { padding-left: 0; padding-right: 0; }
+h1, h2, h3 { overflow-wrap: break-word; }
+</style>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "UK Furniture Guide",
+    "url": "https://ukfurnitureguide.co.uk/",
+    "slogan": "Honest UK furniture buying guides",
+    "email": "info@ukfurnitureonline.co.uk"
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "UK Furniture Guide",
+    "url": "https://ukfurnitureguide.co.uk/",
+    "description": "Honest UK furniture buying guides: sofas, beds, dining sets and mattresses, with real £ prices."
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://ukfurnitureguide.co.uk/index.html"},
+      {"@type": "ListItem", "position": 2, "name": "Furniture Delivery Checker", "item": "https://ukfurnitureguide.co.uk/tools/furniture-delivery-checker.html"}
+    ]
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {"@type": "Question", "name": "What is the standard UK internal door width?", "acceptedAnswer": {"@type": "Answer", "text": "Most UK internal doors are 76 cm (30 inches) wide in older homes, and 78 cm in many newer builds. Always measure your own doorway — Victorian terraces can be 70 cm or less, and the architrave eats a centimetre or two."}},
+      {"@type": "Question", "name": "Can a sofa fit through a 76 cm door?", "acceptedAnswer": {"@type": "Answer", "text": "Most 2-seater sofas fit through a 76 cm door only with the legs off — and often with the back cushions out and the door off its hinges as well. Most 3-seater sofas will not fit through a 76 cm internal door at all and need the wider front door, or delivery in sections. Check before you order: drivers can refuse delivery and still charge."}},
+      {"@type": "Question", "name": "What if my furniture will not fit through the door?", "acceptedAnswer": {"@type": "Answer", "text": "Remove the legs and back cushions, and take the door off its hinges — together that usually frees 10–15 cm. Ask the retailer about split-section or flat-pack delivery, or try the front door or patio doors as an alternative route. Never force it: scratched frames and torn fabric cost more than a re-delivery."}}
+    ]
+  }
+  </script>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-GM5ZW8NTWK"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-GM5ZW8NTWK');
+</script>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="header-inner">
+    <a class="brand" href="../index.html" aria-label="UK Furniture Guide home">
+      <span class="brand-mark">UK</span>
+      <span class="brand-name">UK Furniture Guide<small>HONEST UK FURNITURE BUYING GUIDES</small></span>
+    </a>
+    <button class="nav-toggle" aria-expanded="false" aria-label="Toggle navigation">☰</button>
+    <nav class="main-nav" aria-label="Main navigation">
+      <ul>
+        <li><a href="../index.html">Home</a></li>
+        <li><a href="../guides/best-sofas-uk.html">Sofas</a></li>
+        <li><a href="../guides/best-beds-uk.html">Beds</a></li>
+        <li><a href="../guides/best-dining-sets-uk.html">Dining Sets</a></li>
+        <li><a href="../guides/best-mattresses-uk.html">Mattresses</a></li>
+        <li><a href="sofa-size-finder.html">Sofa Size Finder</a></li><li><a href="bed-size-finder.html">Bed Size Finder</a></li><li><a href="dining-size-finder.html">Dining Size Finder</a></li>
+        <li><a href="mattress-finder.html">Mattress Finder</a></li><li><a href="furniture-delivery-checker.html" class="active">Delivery Checker</a></li><li><a href="dining-seats-calculator.html">Seats Calculator</a></li><li><a href="measurement-converter.html">Measure Converter</a></li>
+        <li><a href="../blog.html">Blog</a></li>
+        <li><a href="../about.html">About</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main>
+<div class="wrap">
+  <p class="breadcrumb"><a href="../index.html">Home</a> › Furniture Delivery Checker</p>
+
+  <h1>Furniture Delivery Checker</h1>
+  <p class="section-sub">Free tool · No signup · Instant answer. Enter your furniture's dimensions and your narrowest doorway — we'll tell you whether it will fit through, and what to take off if it won't.</p>
+
+  <div class="in-short"><strong>In short:</strong> a piece of furniture fits through a doorway when its two smallest dimensions fit inside the door opening — the longest side goes through first. Most UK internal doors are only 76 cm wide, so sofas usually need their legs off (and often the door off its hinges) to get through.</div>
+
+  <div class="tool-box">
+    <label for="preset">What are you moving?</label>
+    <select id="preset">
+      <option value="custom">Custom dimensions — I'll enter them</option>
+      <option value="sofa2">2-seater sofa (typical 180 × 85 × 95 cm)</option>
+      <option value="sofa3">3-seater sofa (typical 210 × 90 × 95 cm)</option>
+      <option value="corner">Corner sofa — one section (180 × 90 × 95 cm)</option>
+      <option value="mattress">Double mattress (135 × 25 × 190 cm)</option>
+      <option value="headboard">Sleigh bed headboard (160 × 120 × 10 cm)</option>
+      <option value="divan">Divan base — one half (75 × 30 × 200 cm)</option>
+      <option value="table">Dining table (160 × 75 × 90 cm)</option>
+      <option value="wardrobe">Flat-pack wardrobe — largest box (200 × 60 × 50 cm)</option>
+      <option value="chest">Chest of drawers (120 × 90 × 45 cm)</option>
+    </select>
+
+    <label>Units</label>
+    <div class="unit-toggle" role="group" aria-label="Measurement units">
+      <button type="button" id="unitCm" class="active">Centimetres</button>
+      <button type="button" id="unitIn">Inches</button>
+    </div>
+
+    <label for="itemW">Furniture width <span id="wUnit" style="font-weight:400;color:var(--muted)">(cm)</span></label>
+    <input type="number" id="itemW" min="1" max="400" step="1" placeholder="e.g. 180">
+    <label for="itemH">Furniture height <span id="hUnit" style="font-weight:400;color:var(--muted)">(cm)</span></label>
+    <input type="number" id="itemH" min="1" max="400" step="1" placeholder="e.g. 85">
+    <label for="itemD">Furniture depth <span id="dUnit" style="font-weight:400;color:var(--muted)">(cm)</span></label>
+    <input type="number" id="itemD" min="1" max="400" step="1" placeholder="e.g. 95">
+    <p style="font-size:14px;color:var(--muted);margin:8px 0 0">Use the <strong>packaged</strong> dimensions from the product listing — that's what the delivery driver brings. Width is the longest side as it stands; height is floor to top.</p>
+
+    <label for="doorPreset" style="margin-top:22px">Narrowest doorway on the delivery route</label>
+    <select id="doorPreset">
+      <option value="internal">Standard UK internal door — 76 × 198 cm</option>
+      <option value="modern">Modern internal door — 78 × 198 cm</option>
+      <option value="external">Front / external door — 84 × 198 cm</option>
+      <option value="wide">Wide doorway — 90 × 198 cm</option>
+      <option value="patio">Patio / French doors — 120 × 210 cm</option>
+      <option value="custom">Custom — I'll enter it</option>
+    </select>
+    <label for="doorW">Doorway width <span id="dwUnit" style="font-weight:400;color:var(--muted)">(cm)</span></label>
+    <input type="number" id="doorW" min="30" max="300" step="1" value="76">
+    <label for="doorH">Doorway height <span id="dhUnit" style="font-weight:400;color:var(--muted)">(cm)</span></label>
+    <input type="number" id="doorH" min="100" max="300" step="1" value="198">
+    <p style="font-size:14px;color:var(--muted);margin:8px 0 0">Measure the clear opening with the door open — not the frame, and not the door leaf. If the door can come off its hinges, tick that below.</p>
+
+    <label for="hallW" style="margin-top:22px">Hallway width (optional — only needed if there's a tight turn)</label>
+    <input type="number" id="hallW" min="30" max="300" step="1" placeholder="e.g. 90 — leave blank if the route is straight">
+
+    <div style="margin-top:18px">
+      <label style="display:flex;gap:10px;align-items:flex-start;font-weight:400;margin:10px 0"><input type="checkbox" id="tightTurn" style="margin-top:5px;flex:0 0 auto"><span><strong>Tight turn</strong> — the item must turn a corner in the hallway or on the stairs</span></label>
+      <label style="display:flex;gap:10px;align-items:flex-start;font-weight:400;margin:10px 0"><input type="checkbox" id="legsOff" style="margin-top:5px;flex:0 0 auto"><span><strong>Legs removed</strong> — takes about 10 cm off the height (most sofas, tables and beds)</span></label>
+      <label style="display:flex;gap:10px;align-items:flex-start;font-weight:400;margin:10px 0"><input type="checkbox" id="cushionsOff" style="margin-top:5px;flex:0 0 auto"><span><strong>Back cushions removed</strong> (sofas) — takes about 12 cm off the depth</span></label>
+      <label style="display:flex;gap:10px;align-items:flex-start;font-weight:400;margin:10px 0"><input type="checkbox" id="doorOff" style="margin-top:5px;flex:0 0 auto"><span><strong>Door off its hinges</strong> — adds about 3 cm to the doorway width</span></label>
+    </div>
+
+    <div style="margin-top:22px">
+      <button class="btn btn-primary" id="checkBtn" type="button" style="width:100%">Will it fit? &rarr;</button>
+    </div>
+
+    <div class="tool-result" id="result" role="status" aria-live="polite"></div>
+  </div>
+
+  <section class="tight">
+    <div class="wrap" style="padding:0">
+      <h2 class="section-title">How the check works</h2>
+      <ul class="check-list">
+        <li><strong>Two smallest dimensions:</strong> the item passes when its two smallest sides fit inside the door opening — the longest side goes through first, along the direction of travel.</li>
+        <li><strong>1 cm clearance:</strong> we allow 1 cm of total clearance. Anything less and you will scrape the frame, the architrave or the paint.</li>
+        <li><strong>What you can take off:</strong> legs (about 10 cm of height), back cushions (about 12 cm of depth) and the door itself (about 3 cm of width) — tick the boxes and the maths updates.</li>
+        <li><strong>Tight turns:</strong> as a rule of thumb, a rigid item turns a hallway corner only if its length is less than the hallway width plus the doorway width. Measure the actual turn — this part is approximate.</li>
+        <li><strong>What it can't check:</strong> stair turns, radiators, light fittings and low ceilings on the route. Measure those the same way: narrowest width first, then height.</li>
+      </ul>
+
+      <h2 class="section-title">Standard UK door sizes</h2>
+      <table class="compare">
+        <tr><th>Doorway</th><th>Typical width</th><th>Typical height</th></tr>
+        <tr><td>Internal door, older homes</td><td>76 cm (30 in)</td><td>198 cm (78 in)</td></tr>
+        <tr><td>Internal door, newer builds</td><td>78 cm (30¾ in)</td><td>198 cm (78 in)</td></tr>
+        <tr><td>Front / external door</td><td>84 cm (33 in)</td><td>198 cm (78 in)</td></tr>
+        <tr><td>Patio / French doors</td><td>120–180 cm</td><td>210 cm</td></tr>
+      </table>
+      <p>Victorian terraces can have internal doors as narrow as 70 cm, and flat entrance doors vary widely — always measure your own doorway rather than trusting the standard.</p>
+
+      <h2 class="section-title">Tool FAQs</h2>
+      <div class="faq">
+        <details><summary>What is the standard UK internal door width?</summary><p>Most UK internal doors are 76 cm (30 inches) wide in older homes, and 78 cm in many newer builds. Always measure your own doorway — Victorian terraces can be 70 cm or less, and the architrave eats a centimetre or two.</p></details>
+        <details><summary>Can a sofa fit through a 76 cm door?</summary><p>Most 2-seater sofas fit through a 76 cm door only with the legs off — and often with the back cushions out and the door off its hinges as well. Most 3-seater sofas will not fit through a 76 cm internal door at all and need the wider front door, or delivery in sections. Check before you order: drivers can refuse delivery and still charge.</p></details>
+        <details><summary>What if my furniture will not fit through the door?</summary><p>Remove the legs and back cushions, and take the door off its hinges — together that usually frees 10–15 cm. Ask the retailer about split-section or flat-pack delivery, or try the front door or patio doors as an alternative route. Never force it: scratched frames and torn fabric cost more than a re-delivery.</p></details>
+      </div>
+
+      <p style="margin-top:28px">Furnishing a room? Start with the <a href="sofa-size-finder.html">Sofa Size Finder</a>, <a href="bed-size-finder.html">Bed Size Finder</a> or <a href="dining-size-finder.html">Dining Size Finder</a> — then check the delivery route here before you order. For the full walkthrough, read our <a href="../guides/sofa-buying-guide.html">sofa buying guide</a>.</p>
+    </div>
+  </section>
+</div>
+</main>
+
+<div class="disclosure-strip">
+  <div class="wrap">UK Furniture Guide may earn a commission on purchases made through links on this site — <a href="../affiliate-disclosure.html">read our affiliate disclosure</a>.</div>
+</div>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div>
+        <h3>UK Furniture Guide</h3>
+        <p style="font-size:14px">Honest UK furniture buying guides. Independent research, real £ prices, practical tools.</p>
+      </div>
+      <div>
+        <h3>Guides</h3>
+        <ul>
+          <li><a href="../guides/best-sofas-uk.html">Best Sofas 2026</a></li>
+          <li><a href="../guides/best-beds-uk.html">Best Beds 2026</a></li>
+          <li><a href="../guides/best-dining-sets-uk.html">Best Dining Sets 2026</a></li>
+          <li><a href="../guides/best-mattresses-uk.html">Best Mattresses 2026</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3>Learn</h3>
+        <ul>
+          <li><a href="../guides/sofa-buying-guide.html">Sofa Buying Guide</a></li>
+          <li><a href="../guides/bed-buying-guide.html">Bed Buying Guide</a></li>
+          <li><a href="../guides/sofa-buying-guide.html">Sofa Buying Guide</a></li>
+          <li><a href="../guides/bed-buying-guide.html">Bed Buying Guide</a></li>
+          <li><a href="../guides/sofa-buying-guide.html">Sofa Buying Guide</a></li>
+          <li><a href="../guides/bed-buying-guide.html">Bed Buying Guide</a></li>
+          <li><a href="sofa-size-finder.html">Sofa Size Finder</a></li><li><a href="bed-size-finder.html">Bed Size Finder</a></li><li><a href="dining-size-finder.html">Dining Size Finder</a></li>
+          <li><a href="mattress-finder.html">Mattress Finder</a></li><li><a href="dining-seats-calculator.html">Dining Seats Calculator</a></li><li><a href="measurement-converter.html">Measurement Converter</a></li><li><a href="furniture-delivery-checker.html">Delivery Checker</a></li>
+          <li><a href="mattress-finder.html">Mattress Finder</a></li><li><a href="dining-seats-calculator.html">Dining Seats Calculator</a></li><li><a href="measurement-converter.html">Measurement Converter</a></li><li><a href="furniture-delivery-checker.html">Delivery Checker</a></li>
+          <li><a href="../about.html">About Us</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3>Legal</h3>
+        <ul>
+          <li><a href="../affiliate-disclosure.html">Affiliate Disclosure</a></li>
+          <li><a href="../privacy-policy.html">Privacy Policy</a></li>
+          <li><a href="../contact.html">Contact</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">© <span data-year>2026</span> UK Furniture Guide. All rights reserved.</div>
+  </div>
+</footer>
+
+<script>
+/* Furniture Delivery Checker — vanilla JS geometry (pure function + rendering) */
+(function () {
+  var PRESETS = {
+    sofa2:     { w: 180, h: 85,  d: 95,  kind: "sofa" },
+    sofa3:     { w: 210, h: 90,  d: 95,  kind: "sofa" },
+    corner:    { w: 180, h: 90,  d: 95,  kind: "sofa" },
+    mattress:  { w: 135, h: 25,  d: 190, kind: "mattress" },
+    headboard: { w: 160, h: 120, d: 10,  kind: "rigid" },
+    divan:     { w: 75,  h: 30,  d: 200, kind: "rigid" },
+    table:     { w: 160, h: 75,  d: 90,  kind: "rigid" },
+    wardrobe:  { w: 200, h: 60,  d: 50,  kind: "rigid" },
+    chest:     { w: 120, h: 90,  d: 45,  kind: "rigid" }
+  };
+  var DOORS = {
+    internal: { w: 76,  h: 198 },
+    modern:   { w: 78,  h: 198 },
+    external: { w: 84,  h: 198 },
+    wide:     { w: 90,  h: 198 },
+    patio:    { w: 120, h: 210 }
+  };
+  /* Pure geometry: item {w,h,d} cm, door {w,h} cm, opts {legsOff,cushionsOff,doorOff,hallW,tightTurn}.
+     Returns verdict + numbers; no DOM access, so it is unit-testable. */
+  function evaluateDeliveryFit(item, door, opts) {
+    var CLEARANCE = 1; // cm of total clearance we demand through the doorway
+    var h = item.h - (opts.legsOff ? 10 : 0);
+    var d = item.d - (opts.cushionsOff ? 12 : 0);
+    var dw = door.w + (opts.doorOff ? 3 : 0);
+    var dh = door.h;
+    var dims = [item.w, h, d].sort(function (a, b) { return a - b; });
+    var a = dims[0], b = dims[1], c = dims[2]; // a,b = cross-section; c travels along
+    // Best orientation: pick the arrangement with the most slack on the binding side.
+    var slack1 = Math.min(dw - CLEARANCE - a, dh - CLEARANCE - b);
+    var slack2 = Math.min(dw - CLEARANCE - b, dh - CLEARANCE - a);
+    var slack = Math.max(slack1, slack2);
+    var fits = slack >= 0;
+    var across = slack1 >= slack2 ? a : b;   // side across the doorway width
+    var upright = slack1 >= slack2 ? b : a;  // side vertical in the doorway
+    var turnOK = true, turnNote = "";
+    if (opts.hallW && opts.tightTurn) {
+      turnOK = c <= opts.hallW + dw;
+      if (!turnOK) turnNote = "It fits the doorway but its " + c + " cm length is too long to turn the corner from a " + opts.hallW + " cm hallway into a " + dw + " cm doorway (rule of thumb: length must be under hallway + doorway width).";
+    }
+    var hallOK = true;
+    if (opts.hallW && a > opts.hallW - CLEARANCE) {
+      hallOK = false;
+    }
+    return { fits: fits, tight: fits && slack < 5, slack: slack, across: across, upright: upright,
+             longest: c, dw: dw, dh: dh, turnOK: turnOK, turnNote: turnNote, hallOK: hallOK,
+             adjH: h, adjD: d };
+  }
+
+  var unit = "cm";
+  function toCm(v) { return unit === "cm" ? v : v * 2.54; }
+  function fromCm(v) { return unit === "cm" ? v : v / 2.54; }
+  function fmtCm(cm) {
+    var inches = cm / 2.54;
+    return Math.round(cm) + " cm (" + inches.toFixed(1) + " in)";
+  }
+  function num(id) {
+    var v = parseFloat(document.getElementById(id).value);
+    return isNaN(v) ? null : v;
+  }
+  function setUnit(u) {
+    var fields = ["itemW", "itemH", "itemD", "doorW", "doorH", "hallW"];
+    fields.forEach(function (id) {
+      var el = document.getElementById(id);
+      if (el.value !== "") {
+        var v = parseFloat(el.value);
+        el.value = u === "cm" ? Math.round(v * 2.54) : Math.round(v / 2.54 * 10) / 10;
+      }
+    });
+    unit = u;
+    document.getElementById("unitCm").classList.toggle("active", u === "cm");
+    document.getElementById("unitIn").classList.toggle("active", u === "in");
+    ["wUnit", "hUnit", "dUnit", "dwUnit", "dhUnit"].forEach(function (id) {
+      document.getElementById(id).textContent = u === "cm" ? "(cm)" : "(in)";
+    });
+  }
+  document.getElementById("unitCm").addEventListener("click", function () { setUnit("cm"); });
+  document.getElementById("unitIn").addEventListener("click", function () { setUnit("in"); });
+
+  document.getElementById("preset").addEventListener("change", function () {
+    var p = PRESETS[this.value];
+    if (!p) return;
+    document.getElementById("itemW").value = Math.round(fromCm(p.w));
+    document.getElementById("itemH").value = Math.round(fromCm(p.h));
+    document.getElementById("itemD").value = Math.round(fromCm(p.d));
+  });
+  document.getElementById("doorPreset").addEventListener("change", function () {
+    var d = DOORS[this.value];
+    if (!d) return;
+    document.getElementById("doorW").value = Math.round(fromCm(d.w));
+    document.getElementById("doorH").value = Math.round(fromCm(d.h));
+  });
+
+  document.getElementById("checkBtn").addEventListener("click", function () {
+    var result = document.getElementById("result");
+    var w = num("itemW"), h = num("itemH"), d = num("itemD");
+    var doorW = num("doorW"), doorH = num("doorH"), hallW = num("hallW");
+    if (w === null || h === null || d === null || doorW === null || doorH === null ||
+        w <= 0 || h <= 0 || d <= 0 || doorW <= 0 || doorH <= 0) {
+      result.innerHTML = "<h3>Almost there&hellip;</h3><p>Please enter the furniture's width, height and depth, plus your doorway's width and height, so we can check.</p>";
+      result.classList.add("show");
+      return;
+    }
+    if (document.getElementById("tightTurn").checked && hallW === null) {
+      result.innerHTML = "<h3>Almost there&hellip;</h3><p>You ticked &ldquo;tight turn&rdquo; — please also enter your hallway width so we can check the corner.</p>";
+      result.classList.add("show");
+      return;
+    }
+    var item = { w: toCm(w), h: toCm(h), d: toCm(d) };
+    var door = { w: toCm(doorW), h: toCm(doorH) };
+    var opts = {
+      legsOff: document.getElementById("legsOff").checked,
+      cushionsOff: document.getElementById("cushionsOff").checked,
+      doorOff: document.getElementById("doorOff").checked,
+      hallW: hallW === null ? null : toCm(hallW),
+      tightTurn: document.getElementById("tightTurn").checked
+    };
+    var kind = (PRESETS[document.getElementById("preset").value] || {}).kind;
+    var r = evaluateDeliveryFit(item, door, opts);
+    var out = "";
+
+    if (r.fits && r.turnOK && r.hallOK) {
+      var head = r.tight ? "Yes — but only just" : "Yes, it fits";
+      out += "<h3>" + (r.tight ? "&#9888;&#65038; " : "&#10003; ") + head + "</h3>";
+      out += "<p>Your " + fmtCm(r.longest) + "-long item passes through a " + fmtCm(r.dw) + " &times; " + fmtCm(r.dh) + " doorway with its length going through first — " + fmtCm(r.across) + " across the doorway and " + fmtCm(r.upright) + " upright, leaving about " + Math.round(r.slack) + " cm to spare.</p>";
+      if (r.tight) out += "<p><strong>Measure twice:</strong> with under 5 cm to spare, take the door off its hinges on the day and check for radiators, handles and light fittings on the route.</p>";
+    } else {
+      out += "<h3>&#10007; It won't fit through that doorway</h3>";
+      if (!r.fits) {
+        out += "<p>The item's two smallest sides are " + fmtCm(r.across) + " &times; " + fmtCm(r.upright) + ", but your doorway is only " + fmtCm(r.dw) + " wide — the " + fmtCm(r.across) + " side is the blocker (we allow 1 cm of clearance).</p>";
+      } else if (!r.hallOK) {
+        out += "<p>It fits the doorway itself, but at " + fmtCm(r.across) + " across it won't even fit down a " + fmtCm(opts.hallW) + " hallway.</p>";
+      } else {
+        out += "<p>" + r.turnNote + "</p>";
+      }
+      // Would the full set of tricks save it?
+      var best = evaluateDeliveryFit(item, door, { legsOff: true, cushionsOff: true, doorOff: true, hallW: opts.hallW, tightTurn: opts.tightTurn });
+      if (best.fits && best.turnOK && best.hallOK && !r.fits) {
+        out += "<p><strong>There is a way:</strong> with the legs off, back cushions out and the door off its hinges, the same item fits with about " + Math.round(best.slack) + " cm to spare. Tick those boxes above to see the updated answer.</p>";
+      } else if (!r.fits) {
+        out += "<p><strong>Your options:</strong> ask the retailer about split-section or flat-pack delivery, try the wider front door or patio doors as the route in, or pick a narrower model. Never force it — scratched frames and torn fabric cost more than a re-delivery.</p>";
+      } else {
+        out += "<p><strong>Your options:</strong> bring it in through a wider door (front or patio doors), or ask the retailer about delivery in sections.</p>";
+      }
+    }
+    if (kind === "mattress") {
+      out += "<p style='font-size:14px'>Note: mattresses bend and compress, so this check treats yours as rigid — the real answer is usually more forgiving than the one above.</p>";
+    }
+    if (opts.legsOff || opts.cushionsOff || opts.doorOff) {
+      var tweaks = [];
+      if (opts.legsOff) tweaks.push("legs off (height now " + fmtCm(r.adjH) + ")");
+      if (opts.cushionsOff) tweaks.push("cushions out (depth now " + fmtCm(r.adjD) + ")");
+      if (opts.doorOff) tweaks.push("door off its hinges (opening now " + fmtCm(r.dw) + " wide)");
+      out += "<p style='font-size:14px'>Checked with: " + tweaks.join(", ") + ".</p>";
+    }
+    out += '<div class="cta-row"><a class="btn btn-outline" href="sofa-size-finder.html">Check the right size first</a></div>';
+    result.innerHTML = out;
+    result.classList.add("show");
+    result.scrollIntoView({ behavior: "smooth", block: "nearest" });
+  });
+})();
+</script>
+
+
+</body>
+</html>

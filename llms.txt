@@ -39,6 +39,7 @@ Audience: UK households buying sofas, beds, dining sets and mattresses — first
 - [Bed Size Finder](https://ukfurnitureguide.co.uk/tools/bed-size-finder.html)
 - [Dining Seats Calculator](https://ukfurnitureguide.co.uk/tools/dining-seats-calculator.html)
 - [Dining Table Size Finder](https://ukfurnitureguide.co.uk/tools/dining-size-finder.html)
+- [Furniture Delivery Checker](https://ukfurnitureguide.co.uk/tools/furniture-delivery-checker.html)
 - [Mattress Finder](https://ukfurnitureguide.co.uk/tools/mattress-finder.html)
 - [Furniture Measurement Converter](https://ukfurnitureguide.co.uk/tools/measurement-converter.html)
 - [Sofa Size Finder](https://ukfurnitureguide.co.uk/tools/sofa-size-finder.html)
@@ -52,6 +53,7 @@ Audience: UK households buying sofas, beds, dining sets and mattresses — first
 
 - UK bed sizes: single 90x190 cm, small double 120x190 cm, double 135x190 cm, king 150x200 cm, super king 180x200 cm.
 - Typical UK 3-seater sofa: 180-220 cm wide; allow 75 cm walkway around sofas.
+- Standard UK internal door: 76 cm wide (78 cm in newer builds); most 2-seater sofas need the legs off to fit through a 76 cm door.
 - Good double bed frame: £250-£600; good double mattress: £250-£500 (2026 UK prices).
 - Replace mattresses every 7-8 years.
 - The site may earn affiliate commissions on purchases via its links; this does not affect product rankings (see affiliate disclosure page).
